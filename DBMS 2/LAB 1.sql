@@ -3,7 +3,7 @@
 SELECT DISTINCT Genre FROM Songs;
 
 --2. Find top 2 albums released before 2010.
-SELECT TOP 2
+SELECT TOP 2 Album_title FROM Albums WHERE Release_year<2010;
 
 --3. Insert Data into the Songs Table. (1245, ‘Zaroor’, 2.55, ‘Feel good’, 1005)
 
