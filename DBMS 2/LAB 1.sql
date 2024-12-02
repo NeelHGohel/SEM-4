@@ -6,39 +6,44 @@ SELECT DISTINCT Genre FROM Songs;
 SELECT TOP 2 Album_title FROM Albums WHERE Release_year<2010;
 
 --3. Insert Data into the Songs Table. (1245, ‘Zaroor’, 2.55, ‘Feel good’, 1005)
-
+INSERT INTO SONGS VALUES (1245 , 'ZAROOR' , 2.55 , 'FELL GOOD' , 1005);
+SELECT * FROM SONGS
 
 --4. Change the Genre of the song ‘Zaroor’ to ‘Happy’
-
+UPDATE Songs SET Genre = 'HAPPY' WHERE Genre = 'ZAROOR';
 
 --5. Delete an Artist ‘Ed Sheeran’
-
+DELETE FROM Artists WHERE Artist_name = 'Ed Sheeran';
 
 --6. Add a New Column for Rating in Songs Table. [Ratings decimal(3,2)]
-
+ALTER TABLE SONGS ADD Ratings decimal(3,2);
 
 --7. Retrieve songs whose title starts with 'S'.
-
+SELECT * FROM Songs WHERE Song_title LIKE '%S';
 
 --8. Retrieve all songs whose title contains 'Everybody'.
-
+SELECT * FROM Songs WHERE Song_title LIKE '%Everybody%';
 
 --9. Display Artist Name in Uppercase.
-
+SELECT UPPER(Artist_name) AS NAME FROM Artists;
 
 --10. Find the Square Root of the Duration of a Song ‘Good Luck’
-
+SELECT SQRT(Duration) AS SQRT_DURATION FROM Songs;
 
 --11. Find Current Date.
-
+SELECT GETDATE() AS TODAY_DATE;
 
 --12. Find the number of albums for each artist.
-
+SELECT COUNT(Album_id) AS COUNT_OF_ALBUMS FROM Albums 
+INNER JOIN Artists
+ON Artists.Artist_id = Albums.Artist_id
+GROUP BY Artist_name;
 
 --13. Retrieve the Album_id which has more than 5 songs in it.
 
 
 --14. Retrieve all songs from the album 'Album1'. (using Subquery)
+
 
 --15. Retrieve all albums name from the artist ‘Aparshakti Khurana’ (using Subquery)
 
