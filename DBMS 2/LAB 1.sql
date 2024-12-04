@@ -40,33 +40,59 @@ ON Artists.Artist_id = Albums.Artist_id
 GROUP BY Artist_name;
 
 --13. Retrieve the Album_id which has more than 5 songs in it.
-
+SELECT Albums.Album_id FROM Albums 
+INNER JOIN Songs 
+ON Albums.Album_id = Songs.Album_id
+GROUP BY Albums.Album_id
+HAVING COUNT(Songs.Song_id) > 5;
 
 --14. Retrieve all songs from the album 'Album1'. (using Subquery)
+SELECT * FROM Songs WHERE Album_id = (SELECT Album_id FROM Albums WHERE Album_title = 'ALBUM1');
 
 
 --15. Retrieve all albums name from the artist ‘Aparshakti Khurana’ (using Subquery)
+SELECT * FROM Albums WHERE Artist_id = (SELECT Artist_id FROM Artists WHERE Artist_name = 'Aparshakti Khurana');
 
 
 --16. Retrieve all the song titles with its album title.
-
+SELECT Songs.Song_title , Albums.Album_title FROM Songs JOIN Albums 
+ON Songs.Album_id = Albums.Album_id;
 
 --17. Find all the songs which are released in 2020.
-
+SELECT Songs.Song_title FROM Songs JOIN Albums 
+ON Songs.Album_id = Albums.Album_id
+WHERE Albums.Release_year = 2009;
 
 --18. Create a view called ‘Fav_Songs’ from the songs table having songs with song_id 101-105.
-
+CREATE VIEW FAV_SONGS
+AS
+SELECT * FROM Songs WHERE Song_id BETWEEN 101 AND 105;
+SELECT * FROM FAV_SONGS;
 
 --19. Update a song name to ‘Jannat’ of song having song_id 101 in Fav_Songs view.
+UPDATE FAV_SONGS
+SET Song_title = 'Jannat' WHERE Song_id = 101;
+SELECT * FROM FAV_SONGS
 
 
 --20. Find all artists who have released an album in 2020.
-
+SELECT * FROM Artists INNER JOIN Albums
+ON Artists.Artist_id = Albums.Artist_id
+WHERE Albums.Release_year = 2020;
 
 --21. Retrieve all songs by Shreya Ghoshal and order them by duration.
+SELECT * FROM Songs INNER JOIN Albums
+ON Albums.Album_id = Songs.Album_id
+INNER JOIN Artists 
+ON Artists.Artist_id = Albums.Artist_id
+WHERE Artists.Artist_name = 'Shreya Ghoshal';
+
+
 
 
 --Part – B
+
+
 
 --22. Retrieve all song titles by artists who have more than one album.
 
