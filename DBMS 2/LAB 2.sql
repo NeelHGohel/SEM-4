@@ -246,32 +246,94 @@ EXEC PR_PERSON_SELECT_TOP
 --Part – B
 
 --5. Create a Procedure that takes the department name as input and returns a table with all workers working in that department.
+CREATE OR ALTER PROC PR_B5
+@DEPTNAME VARCHAR(50)
+AS
+BEGIN 
+	SELECT * FROM Person INNER JOIN Department
+	ON Person.DepartmentID = Department.DepartmentID
+	WHERE Department.DepartmentName = @DEPTNAME;
+END
 
-
+EXEC PR_B5 'ADMIN'
 --6. Create Procedure that takes department name & designation name as input and returns a table with worker’s first name, salary, joining date & department name.
+CREATE OR ALTER PROC PR_B6
+@DEPTNAME VARCHAR(50),
+@DESIGNAME VARCHAR(50)
+AS
+BEGIN 
+	SELECT Person.FirstName,Person.Salary,Person.JoiningDate,Department.DepartmentName
+	FROM Person
+	INNER JOIN Department
+	ON Person.DepartmentID = Department.DepartmentID
+	INNER JOIN Designation
+	ON Person.DesignationID = Designation.DesignationID
+	WHERE Department.DepartmentName = @DEPTNAME 
+	OR Designation.DesignationName = @DESIGNAME;
+END
 
+EXEC PR_B6 'ADMIN' , 'CEO';
 
 --7. Create a Procedure that takes the first name as an input parameter and display all the details of the worker with their department & designation name.
+CREATE OR ALTER PROC PR_B7
+@FIRSTNAME VARCHAR(50)
+AS 
+BEGIN
+	SELECT *
+	FROM Person
+	INNER JOIN Department
+	ON Person.DepartmentID = Department.DepartmentID
+	INNER JOIN Designation
+	ON Person.DesignationID = Designation.DesignationID
+	WHERE Person.FirstName = @FIRSTNAME;
+END
 
+EXEC PR_B7 'RAHUL';
 
 --8. Create Procedure which displays department wise maximum, minimum & total salaries.
+CREATE OR ALTER PROC PR_B8
+AS
+BEGIN
+	SELECT MIN(Person.Salary) AS MINIMUM_SALARY,
+		   MAX(Person.Salary) AS MAXIMUM_SALARY,
+		   SUM(Person.Salary) AS TOTAL_SALARY,
+		   Department.DepartmentName
+	FROM Person INNER JOIN Department
+	ON Person.DepartmentID = Department.DepartmentID
+	GROUP BY Department.DepartmentName;
+END
 
+EXEC PR_B8
 
 --9. Create Procedure which displays designation wise average & total salaries.
+CREATE OR ALTER PROC PR_B9
+AS
+BEGIN
+	SELECT MIN(Person.Salary) AS MINIMUM_SALARY,
+		   MAX(Person.Salary) AS MAXIMUM_SALARY,
+		   SUM(Person.Salary) AS TOTAL_SALARY,
+		   Designation.DesignationName
+	FROM Person INNER JOIN Designation
+	ON Person.DesignationID = Designation.DesignationID
+	GROUP BY Designation.DesignationName;
+END
 
+EXEC PR_B9
 
 --Part – C
 
 --10. Create Procedure that Accepts Department Name and Returns Person Count.
 
 
---11. Create a procedure that takes a salary value as input and returns all workers with a salary greater than input salary value along with their department and designation details.
+--11. Create a procedure that takes a salary value as input and returnsall workerswith a
+--salarygreater than input salary value along with their department and designation details.
 
 
 --12. Create a procedure to find the department(s) with the highest total salary among all departments.
 
 
---13. Create a procedure that takes a designation name as input and returns a list of all workers under that designation who joined within the last 10 years, along with their department.
+--13. Create a procedure that takes a designation name as input and returns a list of all 
+--workers under that designation who joined within the last 10 years, along with their department.
 
 
 --14. Create a procedure to list the number of workers in each department who do not have a designation assigned.
