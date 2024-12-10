@@ -323,21 +323,99 @@ EXEC PR_B9
 --Part – C
 
 --10. Create Procedure that Accepts Department Name and Returns Person Count.
+CREATE OR ALTER PROC PR_C10
+@DEPTNAME VARCHAR(50)
+AS
+BEGIN
+	SELECT COUNT(Person.PersonID) AS COUNT_EMPLOYEE FROM
+	Person INNER JOIN Department
+	ON Person.DepartmentID = Department.DepartmentID
+	WHERE Department.DepartmentName = @DEPTNAME;
+END
+
+EXEC PR_C10 'ADMIN'
 
 
 --11. Create a procedure that takes a salary value as input and returnsall workerswith a
 --salarygreater than input salary value along with their department and designation details.
+CREATE OR ALTER PROC PR_C11
+@SALARY DECIMAL(8,2)
+AS
+BEGIN
+	SELECT *
+	FROM Person
+	INNER JOIN Department
+	ON Person.DepartmentID = Department.DepartmentID
+	INNER JOIN Designation
+	ON Person.DesignationID = Designation.DesignationID
+	WHERE Person.Salary > @SALARY
+END
 
+EXEC PR_C11 10000;
 
 --12. Create a procedure to find the department(s) with the highest total salary among all departments.
+CREATE OR ALTER PROC PR_C12
+AS
+BEGIN
+	SELECT MAX(Person.Salary) AS MAXIMUM_SALARY,Department.DepartmentName
+	FROM Person INNER JOIN Department
+	ON Person.DepartmentID = Department.DepartmentID
+	GROUP BY Department.DepartmentName;
+END
 
+EXEC PR_C12
 
 --13. Create a procedure that takes a designation name as input and returns a list of all 
 --workers under that designation who joined within the last 10 years, along with their department.
+CREATE OR ALTER PROC PR_C13
+@DESIGNAME VARCHAR(50)
+AS
+BEGIN
+	SELECT *
+	FROM Person
+	INNER JOIN Department
+	ON Person.DepartmentID = Department.DepartmentID
+	INNER JOIN Designation
+	ON Person.DesignationID = Designation.DesignationID
+	WHERE YEAR(Person.JoiningDate) < 10;
+END
 
+EXEC PR_C13 'CEO';
 
 --14. Create a procedure to list the number of workers in each department who do not have a designation assigned.
+CREATE OR ALTER PROC PR_C14
+AS
+BEGIN
+	SELECT COUNT(Person.PersonID) AS COUNT_EMPLOYEE
+	FROM Person
+	INNER JOIN Department
+	ON Person.DepartmentID = Department.DepartmentID
+	INNER JOIN Designation
+	ON Person.DesignationID = Designation.DesignationID
+	WHERE Designation.DesignationName IS NULL
+	GROUP BY Department.DepartmentName
+END
 
+EXEC PR_C14
 
+SELECT * FROM Designation
 --15. Create a procedure to retrieve the details of workers in departments where the average salary is above 12000.
+CREATE PROCEDURE PR_C15
+AS
+BEGIN
+    -- Retrieve details of workers in departments where average salary is above 12000
+    SELECT p.PersonID, p.FirstName, p.salary, d.DepartmentName, des.DesignationName
+    FROM Person p
+	INNER JOIN Department d
+	ON p.DepartmentID = d.DepartmentID
+	INNER JOIN Designation des
+	ON p.DesignationID = des.DesignationID
+    WHERE p.DepartmentID IN (
+        SELECT DepartmentID
+        FROM PERSON
+        GROUP BY DepartmentID
+        HAVING AVG(salary) > 12000
+    );
+END;
 
+EXEC PR_C15;
