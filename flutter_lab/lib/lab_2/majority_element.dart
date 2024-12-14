@@ -11,7 +11,7 @@ void main() {
   List<int> l1 = [];
 
   for (int i = 0; i < n; i++) {
-    stdout.write("Enter number in ");
+    stdout.write("Enter number ");
     int n1 = int.parse(stdin.readLineSync()!);
     l1.add(n1);
   }
