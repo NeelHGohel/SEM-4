@@ -10,6 +10,7 @@ void main() {
     int n1 = int.parse(stdin.readLineSync()!);
     l1.add(n1);
   }
+
   stdout.write("Enter number to insert ");
   int num = int.parse(stdin.readLineSync()!);
   stdout.write("Enter position to insert ");
