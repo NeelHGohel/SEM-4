@@ -1,0 +1,92 @@
+1. Retrieve/Display every document of Deposit collection.
+
+db.Deposit.find()
+
+
+2. Display only one document of Deposit collection. (Use: findOne())
+
+db.Deposit.findOne()
+
+
+3. Insert following document into Deposit collection. (Use: insertOne())
+
+db.Deposit.insertOne({
+  
+  ACTNO: 109,
+  CNAME: 'KIRTI',
+  BNAME: 'VIRAR',
+  AMOUNT: 3000,
+  ADATE: '1997-05-03'
+})
+
+4. Insert following documents into Deposit collection. (Use: insertMany())
+db.Deposit.insertMany([{
+  ACTNO: 110,
+  CNAME: 'MITALI',
+  BNAME: 'ANDHERI',
+  AMOUNT: 4500,
+  ADATE: '1995-09-04'
+},{
+  
+  ACTNO: 111,
+  CNAME: 'RAJIV',
+  BNAME: 'NEHRU PLACE',
+  AMOUNT: 7000,
+  ADATE: '1998-10-02'
+}])
+
+
+5. Display all the documents of ‘VIRAR’ branch from Deposit collection.
+
+db.Deposit.find({BNAME : 'VIRAR' })
+
+
+6. Display all the documents of Deposit collection whose amount is between 3000 and 5000.
+
+db.Deposit.find({AMOUNT : {$gte : 2000 , $lte : 5000}})
+
+
+7. Display all the documents of Deposit collection whose amount is greater than 2000 and branch is VIRAR.
+
+db.Deposit.find({BNAME : 'VIRAR' })
+
+
+8. Display all the documents with CNAME, BNAME and AMOUNT fields from Deposit collection.
+
+db.Deposit.find({}, {CNAME : 1 , BNAME : 1 , AMOUNT : 1})
+
+
+9. Display all the documents of Deposit collection on ascending order by CNAME.
+
+db.Deposit.find().sort({CNAME : 1})
+
+
+10. Display all the documents of Deposit collection on descending order by BNAME.
+
+db.Deposit.find().sort({CNAME : 1})
+
+
+11. Display all the documents of Deposit collection on ascending order by ACTNO and descending order by
+AMOUNT.
+
+db.Deposit.find().sort({CNAME : 1})
+
+
+12. Display only two documents of Deposit collection.
+
+db.Deposit.find().limit(2)
+
+
+13. Display 3rd document of Deposit collection.
+
+db.Deposit.find().skip(2).limit(1)
+
+
+14. Display 6th and 7th documents of Deposit collection.
+
+db.Deposit.find().skip(5).limit(2)
+
+
+15. Display the count of documents in Deposit collection. 
+
+db.Deposit.countDocuments()
