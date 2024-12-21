@@ -16,4 +16,17 @@ void main() {
     int n1 = int.parse(stdin.readLineSync()!);
     l1.add(n1);
   }
+
+
+  int uniqueIndex = 1;
+
+  for (int i = 1; i < l1.length; i++) {
+    if (l1[i] != l1[i - 1]) {
+      l1[uniqueIndex] = l1[i];
+      uniqueIndex++;
+    }
+  }
+
+  print(uniqueIndex);
 }
+
