@@ -138,17 +138,84 @@ SELECT DBO.FN_PALINDROME('AABAAC')
 
 --Part – C
 --11. Write a function to check whether a given number is prime or not.
+CREATE OR ALTER FUNCTION FN_C11(@NUM INT)
+RETURNS VARCHAR(50)
+AS
+BEGIN
+	DECLARE @I INT = 2
+	DECLARE @COUNT INT = 0
+	DECLARE @RES VARCHAR(50) = ''
+	WHILE (@I != @NUM)
+		BEGIN
+			IF (@NUM % @I = 0)
+				SET @COUNT = @COUNT + 1
+			SET @I = @I +1
+		END
+	IF @COUNT = 0 
+		SET @RES = 'NO IS PRIME'
+	ELSE
+		SET @RES = 'NO IS NOT PRIME'
+	RETURN @RES
+END
 
+SELECT DBO.FN_C11(6)
 
 --12. Write a function which accepts two parameters start date & end date, and returns a difference in days.
+CREATE OR ALTER FUNCTION FN_C12(@STDATE DATE , @ENDDATE DATE)
+RETURNS INT
+AS
+BEGIN
+	DECLARE @DATEDIFF INT = 0
+	SET @DATEDIFF = DATEDIFF(DAY,@STDATE,@ENDDATE)
+	RETURN @DATEDIFF
+END
 
+SELECT DBO.FN_C12('2024-12-01', '2024-12-26')
 
---13. Write a function which accepts two parameters year & month in integer and returns total days each
---year.
+--13. Write a function which accepts two parameters year & month in integer and returns total days each year.
+CREATE OR ALTER FUNCTION FN_C13(@YEAR INT, @MONTH INT)
+RETURNS INT
+AS
+BEGIN
+	DECLARE @start_date DATE;
+    DECLARE @end_date DATE;
+    DECLARE @total_days INT;
 
+    SET @start_date = DATEFROMPARTS(@year, @month, 1);
+    SET @end_date = EOMONTH(@start_date);
+    SET @total_days = DATEDIFF(DAY, @start_date, @end_date) + 1;
+
+    RETURN @total_days;
+END
+
+SELECT DBO.FN_C13(2024,12);
 
 --14. Write a function which accepts departmentID as a parameter & returns a detail of the persons.
+CREATE OR ALTER FUNCTION FN_C14(@DID INT)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT Person.PersonID, 
+        Person.FirstName, 
+        Person.LastName, 
+        Person.JoiningDate, 
+        Person.Salary,
+        Department.DepartmentName
+	FROM Person INNER JOIN Department
+	ON Department.DepartmentID = Person.DepartmentID
+	WHERE Department.DepartmentID = @DID
+);
 
+SELECT * FROM Department
+SELECT * FROM DBO.FN_C14(1)
  
 --15. Write a function that returns a table with details of all persons who joined after 1-1-1991.
+CREATE OR ALTER FUNCTION FN_C15()
+RETURNS TABLE
+AS
+RETURN(
+	SELECT * FROM Person WHERE JoiningDate > '1991-01-01'
+);
 
+SELECT * FROM DBO.FN_C15();
