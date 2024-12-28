@@ -62,7 +62,7 @@ BEGIN
 		BEGIN
 			SET @N = @N + CAST(@I AS VARCHAR) + ' '
 			SET @I = @I+1
-	END
+		END
 	RETURN @N
 END
 
@@ -113,7 +113,7 @@ BEGIN
 		BEGIN
 			SET @ANS = @ANS + @I
 			SET @I = @I+2
-	END
+		END
 	RETURN @ANS
 END
 
