@@ -31,7 +31,9 @@ class Tabview extends StatelessWidget {
                         return AlertDialog(
                           title: Text("Are you sure logout ?"),
                           actions: [
-                            ElevatedButton(onPressed: () {}, child: Text("Ok")),
+                            ElevatedButton(onPressed: () {
+                              // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>));
+                            }, child: Text("Ok")),
                             ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
