@@ -6,6 +6,7 @@ import 'package:flutter_lab/lab_8/img_web.dart';
 import 'package:flutter_lab/lab_8/stack_widget.dart';
 import 'lab_6/horizontal.dart';
 import 'lab_7/textWidget.dart';
+import 'lab_9/tabView.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Stack_Widget(),
+      home: Tabview(),
     );
   }
 }
