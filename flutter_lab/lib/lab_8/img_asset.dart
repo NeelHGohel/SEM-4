@@ -17,12 +17,9 @@ class _Img_assetState extends State<Img_asset> {
           decoration: BoxDecoration(
               color: Colors.red,
               borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                  image: NetworkImage(
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmpa-OPGCHyX-GPQRrwoR289o79lh94R-ERw&s"),
-                  fit: BoxFit.cover)),
+              // image: Image.asset("assets/images/1.jpg")
         ),
       ),
-    );
+    ));
   }
 }
