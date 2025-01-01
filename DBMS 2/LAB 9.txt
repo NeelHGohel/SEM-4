@@ -1,15 +1,15 @@
-1. Retrieve/Display every document of Deposit collection.
+Part - A
 
+
+1. Retrieve/Display every document of Deposit collection.
 db.Deposit.find()
 
 
 2. Display only one document of Deposit collection. (Use: findOne())
-
 db.Deposit.findOne()
 
 
 3. Insert following document into Deposit collection. (Use: insertOne())
-
 db.Deposit.insertOne({
   
   ACTNO: 109,
@@ -18,6 +18,7 @@ db.Deposit.insertOne({
   AMOUNT: 3000,
   ADATE: '1997-05-03'
 })
+
 
 4. Insert following documents into Deposit collection. (Use: insertMany())
 db.Deposit.insertMany([{
@@ -37,56 +38,134 @@ db.Deposit.insertMany([{
 
 
 5. Display all the documents of ‘VIRAR’ branch from Deposit collection.
-
 db.Deposit.find({BNAME : 'VIRAR' })
 
 
 6. Display all the documents of Deposit collection whose amount is between 3000 and 5000.
-
 db.Deposit.find({AMOUNT : {$gte : 2000 , $lte : 5000}})
 
 
 7. Display all the documents of Deposit collection whose amount is greater than 2000 and branch is VIRAR.
-
 db.Deposit.find({BNAME : 'VIRAR' })
 
 
 8. Display all the documents with CNAME, BNAME and AMOUNT fields from Deposit collection.
-
 db.Deposit.find({}, {CNAME : 1 , BNAME : 1 , AMOUNT : 1})
 
 
 9. Display all the documents of Deposit collection on ascending order by CNAME.
-
 db.Deposit.find().sort({CNAME : 1})
 
 
 10. Display all the documents of Deposit collection on descending order by BNAME.
-
 db.Deposit.find().sort({CNAME : 1})
 
 
 11. Display all the documents of Deposit collection on ascending order by ACTNO and descending order by
 AMOUNT.
-
 db.Deposit.find().sort({CNAME : 1})
 
 
 12. Display only two documents of Deposit collection.
-
 db.Deposit.find().limit(2)
 
 
 13. Display 3rd document of Deposit collection.
-
 db.Deposit.find().skip(2).limit(1)
 
 
 14. Display 6th and 7th documents of Deposit collection.
-
 db.Deposit.find().skip(5).limit(2)
 
 
 15. Display the count of documents in Deposit collection. 
-
 db.Deposit.countDocuments()
+
+
+
+
+Part - B
+
+
+1. Insert following documents into “Student” collection. (Use: insertMany())
+db.Student.insertMany([{ "_id": 1, "name": "John", "age": 30, "city": "New York", "isActive": true },
+{ "_id": 2, "name": "Jane", "age": 25, "city": "Los Angeles", "isActive": false },
+{ "_id": 3, "name": "Tom", "age": 35, "city": "Chicago", "isActive": true },
+{ "_id": 4, "name": "Lucy", "age": 28, "city": "San Francisco", "isActive": true },
+{ "_id": 5, "name": "David", "age": 40, "city": "Miami", "isActive": false },
+{ "_id": 6, "name": "Eva", "age": 23, "city": "Boston", "isActive": true },
+{ "_id": 7, "name": "Nick", "age": 38, "city": "Seattle", "isActive": false },
+{ "_id": 8, "name": "Sophia", "age": 27, "city": "New York", "isActive": true },
+{ "_id": 9, "name": "Liam", "age": 32, "city": "Los Angeles", "isActive": false },
+{ "_id": 10, "name": "Olivia", "age": 29, "city": "San Diego", "isActive": true }])
+
+
+2. Display all documents of "Student" collection.
+db.Student.find()
+
+
+3. Display all documents of "Student" collection whose age is 30.
+db.Student.find({"age":{$eq:30}})
+
+
+4. Display all documents of "Student" collection whose age is greater than 25.
+db.Student.find({"age":{$gt:25}})
+
+
+5. Display all documents of "Student" collection whose name is "John" and age is 30.
+db.Student.find({"age":{$eq:30},"name":"John"})
+
+
+6. Display all documents of "Student" collection whose age is not equal to 25.
+db.Student.find({"age":{$ne:30}})
+
+
+7. Display all documents of "Student" collection whose age is equal to 25 or 30 or 35. (using $or as well as using $in).
+Using $or
+db.Student.find({$or: [{ age: 25 },{ age: 30 },{ age: 35 }]});
+
+
+Using $in
+db.Student.find({age: { $in: [25, 30, 35] }});
+
+
+8. Display all documents of "Student" collection whose name is "John" or age is 30.
+db.Student.find({$or: [{ age: 30 },{ name: "John"}]});
+
+
+9. Display all documents of "Student" collection whose name is "John" and city is New York.
+db.Student.find({"city":"New York","name":"John"})
+
+
+10. Display name and age of students from "Student" collection whose name is "John" and city is New York.
+db.Student.find({"city":"New York","name":"John"},{_id:0,name:1,age:1})
+
+
+
+
+Part - C
+
+
+1. Display name of students from "Student" collection whose age is between to 25 and 35 and sort output by age in ascending order.
+db.Student.find({age:{$gte:25,$lte:35}},{name:1}).sort({age:1})
+
+
+2. Display all documents of "Student" collection and sort all the documents by name in ascending order and then by age in descending.
+db.Student.find().sort({name:1,age:-1})
+
+
+3. Display first five documents of "Student" collection.
+db.Student.find().limit(5)
+
+
+4. Display fourth and fifth documents of "Student" collection.
+db.Student.find().skip(3).limit(2)
+
+
+5. Display the name of oldest student from "Student" collection.
+db.Student.find({},{_id:0,name:1}).sort({age:-1}).limit(1)
+
+
+6. Display all documents of "Student" collection in such a way that skip the first 2 documents and return the rest documents.
+db.Student.find().skip(2)
+

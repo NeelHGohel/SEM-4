@@ -3,102 +3,77 @@ method.
 Part - A
 
 1. Create a new database named “Darshan”.
-
 use Darshan
 
 
 2. Create another new database named “DIET”.
-
 use DIET
 
 
 3. List all databases.
-
 show dbs
 
 
 4. Check the current database.
-
 db
 
 
 5. Drop “DIET” database.
-
 db.DIET.drop()
 
 
 6. Create a collection named “Student” in the “Darshan” database.
-
 db.createCollection("Student")
 
 
 7. Create a collection named “Department” in the “Darshan” database.
-
 db.createCollection("Department")
 
 
-
 8. List all collections in the “Darshan” database.
-
 show collections
 
 
 9. Insert a single document using insertOne into “Department” collection. (Dname:’CE’, HOD:’Patel’)
-
 db.Department.insertOne({Dname:"CE", HOD:"Patel"})
 
 
 10. Insert two document using insertMany into “Department” collection. (Dname:’IT’ and Dname:’ICT’)
-
 db.Department.insertMany([{Dname:"CE", HOD:"Alpha"},{Dname:"IT", HOD:"Beta"},{Dname:"CSE", HOD:"Gamma"}])
 
 
-
 11. Drop a collection named “Department” from the “Darshan” database.
-
 db.Department.drop()
 
 
 12. Insert a single document using insertOne into “Student” collection.
 (Fields are Name, City, Branch, Semester, Age) Insert your own data.
-
 db.Student.insertOne({Name : "Neel" , City : "Rajkot" , Branch : "CSE" , Semester : 4 , Age : 19})
-
 
 
 13. Insert three documents using insertMany into “Student” collection.
 (Fields are Name, City, Branch, Semester, Age) Insert your three friend’s data.
-
 db.Student.insertMany([{Name : "Neel" , City : "Rajkot" , Branch : "CSE" , Semester : 4 , Age : 19},
 {Name : "Alpha" , City : "ABC" , Branch : "CE" , Semester : 8 , Age : 25}])
 
 
-
 14. Check whether “Student” collection exists or not.
-
 db.getCollection().include("Student")
 
 
-
 15. Check the stats of “Student” collection.
-
 db.Student.stats()
 
 
 16. Drop the “Student” collection.
-
 db.Student.drop()
 
 
-
 17. Create a collection named “Deposit”.
-
 db.createCollection("Deposit")
 
 
-
 18. Insert following data in to “Deposit” collection.
-
 db.Deposit.insertMany([
   { ACTNO: 101, CNAME: 'ANIL', BNAME: 'VRCE', AMOUNT: 1000.00, CITY: 'RAJKOT' },
   { ACTNO: 102, CNAME: 'SUNIL', BNAME: 'AJNI', AMOUNT: 5000.00, CITY: 'SURAT' },
@@ -113,12 +88,40 @@ db.Deposit.insertMany([
 
 
 19. Display all the documents of “Deposit” collection.
-
 db.Deposit.find()
 
 
 
 20. Drop the “Deposit” collection.
-
 db.Deposit.drop()
+
+
+PART-B
+1. Create a new database named “Computer”
+use database Computer
+
+
+2. Create a collection named “Faculty” in the “Computer” database
+db.createCollection("Faculty")
+
+
+3. Insert a below document using insertOne into “Faculty” collection.
+db.Faculty.insertOne({FID:"1",FNAME:"ANIL",BNAME:"CE",AMOUNT:10000,JDATE:"01-03-1995"})
+
+
+4. Insert below documents using insertMany into “Faculty” collection. 
+db.Faculty.insertMany([{FID:"2",FNAME:"SUNIL",BNAME:"CE",AMOUNT:50000,JDATE:"04-01-1996"},{FID:3,FNAME:"MEHUL",BNAME:"IT",SALARY:35000,JDATE:"17-11-1995"},{FID:4,FNAME:"MADHURI",BNAME:"IT",SALARY:12000,JDATE:"17-12-1995"},{FID:5,FNAME:"PRMOD",BNAME:"CE",SALARY:30000,JDATE:"27-03-1996"},{FID:6,FNAME:"SANDIP",BNAME:"CE",SALARY:20000,JDATE:"31-03-1996"},{FID:7,FNAME:"SHIVANI",BNAME:"CE",SALARY:10000,JDATE:"05-09-1995"},{FID:8,FNAME:"KRANTI",BNAME:"IT",SALARY:50000,JDATE:"02-07-1995"}])
+
+
+5. Display all the documents of “Faculty” collection.
+db.Faculty.find()
+
+
+6. Drop the “Faculty” collection.
+db.Faculty.drop()
+
+
+7. Drop the “Computer” database.
+db.dropDatabase("Computer")
+
 
