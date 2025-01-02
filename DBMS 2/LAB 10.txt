@@ -162,10 +162,25 @@ db.Student_Data.updateMany({CITY : "Jamnagar" , DEPARTMENT : "CE"} , {$set : {CI
 
 
 8. Increase Fees by 500 where the Gender is not 'Female'. (Use: Not)
+db.Student_Data.updateMany({GENDER : "Male"} , {$inc : {FEES : 500}})
+
+
 9. Set the Department of all students from 'EE' and in Sem 3 to 'Electrical'.
+db.Student_Data.updateMany({SEM : 3} , {$set : {DEPARTMENT : "Electrical"}})
+
+
 10. Update the Fees of students in 'Rajkot' who are male.
+db.Student_Data.updateMany({CITY : "Rajkot" , GENDER: "Male"} , {$inc : {FEES : 500}})
+
+
 11. Change City to 'Vadodara' for students in Sem 5 and with fees less than 10000.
+db.Student_Data.updateMany({$and:[{SEM : 5 ,FEES : {$lt : 10000}}]} , {$set : {CITY : "Vadodara"}})
+
+
 12. Delete all students where the City is 'Ahmedabad' or GENDER is 'Male'.
+db.Student_Data.deleteMany({$or : [{CITY : "Ahmedabad" , GENDER : "Male"}]})
+
+
 13. Delete students whose Rollno is not in the list [101, 105, 110].
 14. Delete students from the 'Civil' department who are in Sem 5 or Sem 7.
 15. Delete all students who are not in the cities 'Rajkot', 'Baroda', or 'Jamnagar'.
