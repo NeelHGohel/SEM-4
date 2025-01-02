@@ -133,14 +133,34 @@ Part – B
 Create collection named “Student_data” and insert following 10 documents into it
 
 
-
 1. Display Female students and belong to Rajkot city.
+db.Student_Data.find({$and : [{GENDER : "Female"} , {CITY : "Rajkot"}]})
+
+
 2. Display students not studying in 3rd sem.
+db.Student_Data.find({SEM : {$ne : 3}})
+
+
 3. Display students whose city is Jamnagar or Baroda. (use: IN)
+db.Student_Data.find({CITY : {$in : ["Baroda" , "Jamnagar"]}})
+
+
 4. Display first 2 students names who lives in Baroda.
+db.Student_Data.find({CITY : "Baroda"}).limit(2)
+
+
 5. Display Male students who studying in 3rd sem.
+db.Student_Data.find({$and : [{GENDER : "Male"} , {SEM : 3}]})
+
+
 6. Display sname and city and fees of those students whose roll no is less than 105.
+db.Student_Data.find({ROLLNO : {$lt : 105}} , {SNAME : 1 , CITY : 1 , FEES : 1})
+
+
 7. Update City of all students from 'Jamnagar' City and Department as 'CE' to 'Surat'.
+db.Student_Data.updateMany({CITY : "Jamnagar" , DEPARTMENT : "CE"} , {$set : {CITY : "Surat"}})
+
+
 8. Increase Fees by 500 where the Gender is not 'Female'. (Use: Not)
 9. Set the Department of all students from 'EE' and in Sem 3 to 'Electrical'.
 10. Update the Fees of students in 'Rajkot' who are male.
