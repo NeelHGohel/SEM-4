@@ -1,0 +1,188 @@
+Part – A 
+
+
+1. Update the age of John's to 31.
+db. Student.updateOne({name:'John'},{$set:{age:31}})
+
+
+2. Update the city of all students from 'New York' to 'New Jersey'.
+db.Student.updateMany({ city: 'New York' }, { $set: { city: 'New Jersey' } });
+
+
+3. Set isActive to false for every student older than 35.
+db.Student.updateMany({ age: { $gt: 35 } }, { $set: { isActive: false } });
+
+
+4. Increment the age of all students by 1 year.
+db.Student.updateMany({}, { $inc: { age: 1 } });
+
+
+5. Set the city of 'Eva' to 'Cambridge'.
+db.Student.updateOne({name:'Eva'},{ $set :{city:'Cambridge'}})
+
+
+6. Update 'Sophia's isActive status to false.
+db.Student.updateOne({name:'Sophia'},{$set:{isActive:false}})
+
+
+7. Update the city field of student aged below 30 to 'San Diego'.
+db.Student.updateMany({ age: { $lt: 30 } }, { $set: { city: 'San Diego' } });
+
+
+8. Rename the age field to years for all documents.
+db.Student.updateMany({},{$rename:{age:'years'}});
+
+
+9. Update 'Nick' to make him active (isActive = true). 
+db.Student.updateOne({name:'Nick'},{$set:{isActive:true}})
+
+
+10. Update all documents to add a new field country with the value 'USA'.
+db.Student.updateMany({}, { $set: { country: 'USA' } });
+
+
+11. Update 'David's city to 'Orlando'.
+db.Student.updateOne({name:'David'},{$set:{city:'Orlando'}})
+
+
+12. Multiply the age of all students by 2.
+db.Student.updateMany({},{ $mul: { age: 2 } })
+
+
+13. Unset (remove) the city field for 'Tom'.
+db.Student.updateOne({ name: "Tom" },{ $unset: { city: "" } })
+
+
+14. Add a new field premiumUser and to true for users older than 30.
+db.Student.updateMany({age:{$gt:30}},{$set:{premiumUser:true}})
+
+
+15. Set isActive to true for 'Jane'.
+db.Student.updateOne({name:"Jane"},{$set:{isActive:true}})
+
+
+16. Update isActive field of 'Lucy' to false.
+db.Student.updateOne({name:"Lucy"},{$set:{isActive:false}})
+
+
+17. Delete a document of 'Nick' from the collection.
+db.Student.deleteOne({name:"Nick"})
+
+
+18. Delete all students who are inactive (isActive = false).
+db.Student.deleteMany({isActive:false})
+
+ 
+19. Delete all students who live in 'New York'.
+db.Student.deleteMany({city:"New York"})
+
+ 
+20. Delete all the students aged above 35.
+db.Student.deleteMany({age:{$gt:35}})
+
+
+21. Delete a student named ''Olivia'' from the collection.
+db.Student.deleteOne({name:"Olivia"})
+
+
+22. Delete all the students whose age is below 25.
+db.Student.deleteMany({age:{$lt:25}})
+
+
+23. Delete the first student whose isActive field is true.
+db.students.deleteOne({isActive:true})
+ 
+
+24. Delete all students from 'Los Angeles'. 
+db.Student.deleteMany({city:"Los Angeles"})
+
+
+25. Delete all students who have city field missing.
+db.Student.deleteMany({city:{$exists:false}})
+
+
+26. Rename 'city' field to 'location' for all documents.
+db.Student.updateMany({},{$rename:{city:"location"}})
+
+
+27. Rename the name field to FullName for 'John'.
+db.Student.updateOne({name:"John"},{$rename:{name:"FullName"}})
+
+
+28. Rename the isActive field to status for all documents.
+db.Student.updateMany({},{$rename:{isActive:"status"}})
+
+
+29. Rename age to yearsOld for everyone from 'San Francisco' student only.
+db.students.updateMany({city:"San Francisco"},{$rename:{age:"yearsOld"}})
+
+
+30. Create a Capped Collection named “Employee” as per follows: 
+db.createCollection("Employee",{capped:true,size:100000,max:1000})
+db.Employee.insertMany([
+    { Ecode: 1, Ename: "John", EID: 1 },
+    { Ecode: 2, Ename: "Jane", age: 25, city: "Los Angeles", EID: 2 },
+    { Ecode: 3, Ename: "Tom", age: 35, EID: 3 },
+    { Ecode: 4, Ename: "Lucy", age: 28, city: "San Francisco", isActive: true, EID: 4 },
+    { Ename: "Dino", EID: 5 }])
+
+
+
+
+Part – B
+Create collection named “Student_data” and insert following 10 documents into it
+
+
+
+1. Display Female students and belong to Rajkot city.
+2. Display students not studying in 3rd sem.
+3. Display students whose city is Jamnagar or Baroda. (use: IN)
+4. Display first 2 students names who lives in Baroda.
+5. Display Male students who studying in 3rd sem.
+6. Display sname and city and fees of those students whose roll no is less than 105.
+7. Update City of all students from 'Jamnagar' City and Department as 'CE' to 'Surat'.
+8. Increase Fees by 500 where the Gender is not 'Female'. (Use: Not)
+9. Set the Department of all students from 'EE' and in Sem 3 to 'Electrical'.
+10. Update the Fees of students in 'Rajkot' who are male.
+11. Change City to 'Vadodara' for students in Sem 5 and with fees less than 10000.
+12. Delete all students where the City is 'Ahmedabad' or GENDER is 'Male'.
+13. Delete students whose Rollno is not in the list [101, 105, 110].
+14. Delete students from the 'Civil' department who are in Sem 5 or Sem 7.
+15. Delete all students who are not in the cities 'Rajkot', 'Baroda', or 'Jamnagar'.
+16. Delete students whose Rollno is between 105 and 108.
+17. Rename the City field to LOCATION for all students.
+18. Rename the Department field to Branch where the Fees is less than 10000.
+19. Rename Sname to Fullname for students with Rollno in [106, 107, 108].
+20. Rename Fees to Tuition_Fees for all students with Fees greater than 9000.
+21. Rename Department to Major where the Fees is less than 15000 and Gender is 'Female'.
+22. Rename City to Hometown for all students whose SEM is 3 and Department is not 'Mechanical'.
+
+
+
+Part – C
+
+1. Create a capped collection named” logs” with a maximum size of 100 KB and a maximum of 10
+documents.
+
+2. Insert below 12 log entries into the “logs” collection. Each entry should contain a message, level (e.g.,
+"info", "warning", "error"), and a timestamp field. Use the insertMany() method.
+{ message: "System started", level: "info", timestamp: new Date() }
+{ message: "Disk space low", level: "warning", timestamp: new Date() }
+{ message: "User login", level: "info", timestamp: new Date() }
+{ message: "System reboot", level: "info", timestamp: new Date() }
+{ message: "Error in module", level: "error", timestamp: new Date() }
+{ message: "Memory usage high", level: "warning", timestamp: new Date() }
+{ message: "User logout", level: "info", timestamp: new Date() }
+{ message: "File uploaded", level: "info", timestamp: new Date() }
+{ message: "Network error", level: "error", timestamp: new Date() }
+{ message: "Backup completed", level: "info", timestamp: new Date() }
+{ message: "Database error", level: "error", timestamp: new Date() }
+{ message: "Service started", level: "info", timestamp: new Date() }
+3. Perform find method on “logs” collection to ensure only the last 10 documents are retained (even
+though you inserted 12).
+4. Insert below 5 more documents and check if the oldest ones are automatically removed.
+{ message: "New log entry 1", level: "info", timestamp: new Date() }
+{ message: "New log entry 2", level: "info", timestamp: new Date() }
+{ message: "New log entry 3", level: "info", timestamp: new Date() }
+{ message: "New log entry 4", level: "warning", timestamp: new Date() }
+{ message: "New log entry 5", level: "error", timestamp: new Date() }
