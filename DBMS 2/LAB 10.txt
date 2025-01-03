@@ -182,15 +182,34 @@ db.Student_Data.deleteMany({$or : [{CITY : "Ahmedabad" , GENDER : "Male"}]})
 
 
 13. Delete students whose Rollno is not in the list [101, 105, 110].
+db.Student_data.deleteMany({ROLLNO:{$nin:[101,105,110]}})
+
 14. Delete students from the 'Civil' department who are in Sem 5 or Sem 7.
+db.Student_data.deleteMany({DEPARTMENT:"Civil",SEM:{$in:[5,7]}})
+
 15. Delete all students who are not in the cities 'Rajkot', 'Baroda', or 'Jamnagar'.
+db.Student_data.deleteMany({CITY:{$nin:["Rajkot","Baroda","Jamnagar"]}})
+
 16. Delete students whose Rollno is between 105 and 108.
+db.Student_data.deleteMany({ROLLNO:{$gte:105,$lte:108}})
+
 17. Rename the City field to LOCATION for all students.
+db.Student_data.updateMany({},{$rename:{CITY:"LOCATION"}})
+
 18. Rename the Department field to Branch where the Fees is less than 10000.
+db.Student_data.updateMany({FEES:{$lt:10000}},{$rename:{DEPARTMENT:"Branch"}})
+
 19. Rename Sname to Fullname for students with Rollno in [106, 107, 108].
+db.Student_data.updateMany({ROLLNO:{$in:[106,107,108]}},{$rename:{SNAME:"Fullname"}})
+
 20. Rename Fees to Tuition_Fees for all students with Fees greater than 9000.
+db.Student_data.updateMany({FEES:{$gt:9000}},{$rename:{FEES:"Tuition_Fees"}})
+
 21. Rename Department to Major where the Fees is less than 15000 and Gender is 'Female'.
+db.Student_data.updateMany({FEES:{$lt:15000},GENDER:"Female"},{$rename:{DEPARTMENT:"Major"}})
+
 22. Rename City to Hometown for all students whose SEM is 3 and Department is not 'Mechanical'.
+db.Student_data.updateMany({SEM:3,DEPARTMENT:{$ne:"Mechanical"}},{$rename:{CITY:"Hometown"}})
 
 
 
