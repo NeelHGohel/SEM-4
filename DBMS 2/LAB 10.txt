@@ -213,6 +213,7 @@ db.Student_data.updateMany({SEM:3,DEPARTMENT:{$ne:"Mechanical"}},{$rename:{CITY:
 
 
 
+
 Part – C
 
 1. Create a capped collection named” logs” with a maximum size of 100 KB and a maximum of 10
