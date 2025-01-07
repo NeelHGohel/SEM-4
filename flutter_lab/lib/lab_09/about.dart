@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/lab_9/home.dart';
+import 'package:flutter_lab/lab_09/home.dart';
 
 class About extends StatelessWidget {
   const About({super.key});

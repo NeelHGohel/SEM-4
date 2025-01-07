@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/lab_6/vertical.dart';
-import 'package:flutter_lab/lab_6/whole_screen_divide.dart';
-import 'package:flutter_lab/lab_8/img_asset.dart';
-import 'package:flutter_lab/lab_8/img_web.dart';
-import 'package:flutter_lab/lab_8/stack_widget.dart';
-import 'lab_6/horizontal.dart';
-import 'lab_7/textWidget.dart';
-import 'lab_9/tabView.dart';
+import 'package:flutter_lab/lab_06/vertical.dart';
+import 'package:flutter_lab/lab_06/whole_screen_divide.dart';
+import 'package:flutter_lab/lab_08/img_asset.dart';
+import 'package:flutter_lab/lab_08/img_web.dart';
+import 'package:flutter_lab/lab_08/stack_widget.dart';
+import 'lab_06/horizontal.dart';
+import 'lab_07/textWidget.dart';
+import 'lab_09/tabView.dart';
 
 void main() {
   runApp(const MyApp());
