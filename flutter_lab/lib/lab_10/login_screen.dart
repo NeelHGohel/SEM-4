@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Form"),
+        title: Text("Login/Registraction Form"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 50,
               ),
               ElevatedButton(
                 onPressed: () {
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Are you Registered user "),
+                  Text("Are you Registered user?? "),
                   SizedBox(
                     height: 30,
                   ),
