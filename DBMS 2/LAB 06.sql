@@ -121,12 +121,47 @@ WHILE @@FETCH_STATUS = 0
 CLOSE Product_CursorUpdate;
 DEALLOCATE Product_CursorUpdate;
 
+SELECT * FROM Products
 --6. Create a Cursor to Rounds the price of each product to the nearest whole number.
+DECLARE @Product_id5 INT ,
+	@Product_Name5 VARCHAR(250),
+	@Price5 DECIMAL(10, 2); 
 
+DECLARE Product_Cursor_RoundsUP CURSOR
+FOR SELECT Product_id , Product_Name , Price FROM Products;
+
+OPEN Product_Cursor_RoundsUP;
+FETCH NEXT FROM Product_Cursor_RoundsUP INTO @Product_id5, @Product_Name5, @Price5;
+
+WHILE @@FETCH_STATUS = 0
+	BEGIN
+		PRINT CAST(@Product_id5 AS VARCHAR) + '-' + @Product_Name5 + '-' + CAST(FLOOR(@Price5) AS VARCHAR) 
+		FETCH NEXT FROM Product_Cursor_RoundsUP INTO @Product_id5, @Product_Name5, @Price5;
+	END
+
+CLOSE Product_Cursor_RoundsUP;
+DEALLOCATE Product_Cursor_RoundsUP;
 
 --Part – C
 --7. Create a cursor to insert details of Products into the NewProducts table if the product is “Laptop”
 --(Note: Create NewProducts table first with same fields as Products table)
+
+-- Create the Products table
+CREATE TABLE NewProducts (
+	Product_id INT PRIMARY KEY,
+	Product_Name VARCHAR(250) NOT NULL,
+	Price DECIMAL(10, 2) NOT NULL
+);
+
+-- Insert data into the Products table
+INSERT INTO NewProducts (Product_id, Product_Name, Price) VALUES
+(1, 'Smartphone', 35000),
+(2, 'Laptop', 65000),
+(3, 'Headphones', 5500),
+(4, 'Television', 85000),
+(5, 'Gaming Console', 32000);
+
+
 
 
 --8. Create a Cursor to Archive High-Price Products in a New Table (ArchivedProducts), Moves products
