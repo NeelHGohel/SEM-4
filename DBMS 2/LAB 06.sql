@@ -102,7 +102,24 @@ DEALLOCATE Product_Cursor_Delete;
 
 --5. Create a cursor Product_CursorUpdate that retrieves all the data from the products table and increases
 --the price by 10%.
+DECLARE @Product_id4 INT ,
+	@Product_Name4 VARCHAR(250),
+	@Price4 DECIMAL(10, 2); 
 
+DECLARE Product_CursorUpdate CURSOR
+FOR SELECT Product_id , Product_Name , Price FROM Products;
+
+OPEN Product_CursorUpdate;
+FETCH NEXT FROM Product_CursorUpdate INTO @Product_id4, @Product_Name4, @Price4;
+
+WHILE @@FETCH_STATUS = 0
+	BEGIN
+		PRINT CAST(@Product_id4 AS VARCHAR) + '-' + @Product_Name4 + '-' + CAST(@Price4 + @Price4*.1 AS VARCHAR) 
+		FETCH NEXT FROM Product_CursorUpdate INTO @Product_id4, @Product_Name4, @Price4;
+	END
+
+CLOSE Product_CursorUpdate;
+DEALLOCATE Product_CursorUpdate;
 
 --6. Create a Cursor to Rounds the price of each product to the nearest whole number.
 
