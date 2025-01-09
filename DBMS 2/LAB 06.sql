@@ -180,4 +180,33 @@ SELECT * FROM NewProducts
 --8. Create a Cursor to Archive High-Price Products in a New Table (ArchivedProducts), Moves products
 --with a price above 50000 to an archive table, removing them from the original Products table.
 
+CREATE TABLE ArchivedProducts (
+	Product_id INT PRIMARY KEY,
+	Product_Name VARCHAR(250) NOT NULL,
+	Price DECIMAL(10, 2) NOT NULL
+);
+
+DECLARE @Product_id7 INT ,
+	@Product_Name7 VARCHAR(250),
+	@Price7 DECIMAL(10, 2); 
+
+DECLARE Product_CursorArchive_High_Price_Products CURSOR
+FOR SELECT Product_id , Product_Name , Price FROM Products;
+
+OPEN Product_CursorArchive_High_Price_Products;
+FETCH NEXT FROM Product_CursorArchive_High_Price_Products INTO @Product_id7, @Product_Name7, @Price7;
+
+WHILE @@FETCH_STATUS = 0
+	BEGIN
+
+		IF (@Product_Name7 = 'Laptop')
+			INSERT INTO NewProducts VALUES(@Product_id7 , @Product_Name7 , @Price6)
+		PRINT CAST(@Product_id7 AS VARCHAR) + '-' + @Product_Name7 + '-' + CAST(FLOOR(@Price7) AS VARCHAR) 
+		FETCH NEXT FROM Product_CursorArchive_High_Price_Products INTO @Product_id7, @Product_Name7, @Price7;
+	END
+
+CLOSE Product_CursorArchive_High_Price_Products;
+DEALLOCATE Product_CursorArchive_High_Price_Products;
+
+SELECT * FROM NewProducts
 
