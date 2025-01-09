@@ -14,10 +14,26 @@ INSERT INTO Products (Product_id, Product_Name, Price) VALUES
 (4, 'Television', 85000),
 (5, 'Gaming Console', 32000);
 
+SELECT * FROM Products;
 --Part - A
 
 --1. Create a cursor Product_Cursor to fetch all the rows from a products table.
+DECLARE @Product_id INT ,
+	@Product_Name VARCHAR(250),
+	@Price DECIMAL(10, 2); 
 
+DECLARE Product_Cursor CURSOR
+FOR SELECT * FROM Products;
+
+OPEN Product_Cursor;
+FETCH NEXT FROM Product_Cursor INTO @Product_id,@Product_Name,@Price;
+
+WHILE @@FETCH_STATUS = 0
+	BEGIN
+		PRINT CAST(@Product_id AS VARCHAR) + '-' + @Product_Name + '-' + CAST(@Price AS VARCHAR)
+	END
+CLOSE Product_Cursor;
+DEALLOCATE Product_Cursor;
 
 --2. Create a cursor Product_Cursor_Fetch to fetch the records in form of ProductID_ProductName.
 --(Example: 1_Smartphone)
