@@ -153,15 +153,6 @@ CREATE TABLE NewProducts (
 	Price DECIMAL(10, 2) NOT NULL
 );
 
--- Insert data into the Products table
-INSERT INTO NewProducts (Product_id, Product_Name, Price) VALUES
-(1, 'Smartphone', 35000),
-(2, 'Laptop', 65000),
-(3, 'Headphones', 5500),
-(4, 'Television', 85000),
-(5, 'Gaming Console', 32000);
-
-
 DECLARE @Product_id6 INT ,
 	@Product_Name6 VARCHAR(250),
 	@Price6 DECIMAL(10, 2); 
@@ -170,11 +161,13 @@ DECLARE Product_Cursor_insert_details CURSOR
 FOR SELECT Product_id , Product_Name , Price FROM Products;
 
 OPEN Product_Cursor_insert_details;
-FETCH NEXT FROM Product_Cursor_RoundsUP INTO @Product_id6, @Product_Name6, @Price6;
+FETCH NEXT FROM Product_Cursor_insert_details INTO @Product_id6, @Product_Name6, @Price6;
 
 WHILE @@FETCH_STATUS = 0
 	BEGIN
-		
+
+		IF (@Product_Name6 = 'Laptop')
+			INSERT INTO NewProducts VALUES(@Product_id6 , @Product_Name6 , @Price6)
 		PRINT CAST(@Product_id6 AS VARCHAR) + '-' + @Product_Name6 + '-' + CAST(FLOOR(@Price6) AS VARCHAR) 
 		FETCH NEXT FROM Product_Cursor_insert_details INTO @Product_id6, @Product_Name6, @Price6;
 	END
@@ -182,5 +175,9 @@ WHILE @@FETCH_STATUS = 0
 CLOSE Product_Cursor_insert_details;
 DEALLOCATE Product_Cursor_insert_details;
 
+SELECT * FROM NewProducts
+
 --8. Create a Cursor to Archive High-Price Products in a New Table (ArchivedProducts), Moves products
 --with a price above 50000 to an archive table, removing them from the original Products table.
+
+
