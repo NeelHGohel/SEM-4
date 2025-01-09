@@ -26,18 +26,36 @@ DECLARE Product_Cursor CURSOR
 FOR SELECT * FROM Products;
 
 OPEN Product_Cursor;
-FETCH NEXT FROM Product_Cursor INTO @Product_id,@Product_Name,@Price;
+FETCH NEXT FROM Product_Cursor INTO @Product_id, @Product_Name, @Price;
 
 WHILE @@FETCH_STATUS = 0
 	BEGIN
 		PRINT CAST(@Product_id AS VARCHAR) + '-' + @Product_Name + '-' + CAST(@Price AS VARCHAR)
+		FETCH NEXT FROM Product_Cursor INTO @Product_id, @Product_Name, @Price;
 	END
+
 CLOSE Product_Cursor;
 DEALLOCATE Product_Cursor;
 
 --2. Create a cursor Product_Cursor_Fetch to fetch the records in form of ProductID_ProductName.
 --(Example: 1_Smartphone)
+DECLARE @Product_id1 INT,
+	@Product_Name1 VARCHAR(50); 
 
+DECLARE Product_Cursor_Fetch CURSOR
+FOR SELECT @Product_id1 , @Product_Name1 FROM Products;
+
+OPEN Product_Cursor_Fetch;
+FETCH NEXT FROM Product_Cursor_Fetch INTO @Product_id1, @Product_Name1;
+
+WHILE @@FETCH_STATUS = 0
+	BEGIN
+		PRINT CAST(@Product_id1 AS VARCHAR) + '_' + @Product_Name1
+		FETCH NEXT FROM Product_Cursor_Fetch INTO @Product_id1, @Product_Name1;
+	END
+
+CLOSE Product_Cursor_Fetch;
+DEALLOCATE Product_Cursor_Fetch;
 
 --3. Create a Cursor to Find and Display Products Above Price 30,000.
 
