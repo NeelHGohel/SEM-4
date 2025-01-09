@@ -100,7 +100,6 @@ DEALLOCATE Product_Cursor_Delete;
 
 --Part – B
 
-
 --5. Create a cursor Product_CursorUpdate that retrieves all the data from the products table and increases
 --the price by 10%.
 
