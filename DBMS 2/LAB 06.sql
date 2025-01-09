@@ -23,7 +23,7 @@ DECLARE @Product_id INT ,
 	@Price DECIMAL(10, 2); 
 
 DECLARE Product_Cursor CURSOR
-FOR SELECT * FROM Products;
+FOR SELECT Product_id,Product_Name,Price FROM Products;
 
 OPEN Product_Cursor;
 FETCH NEXT FROM Product_Cursor INTO @Product_id, @Product_Name, @Price;
@@ -37,13 +37,14 @@ WHILE @@FETCH_STATUS = 0
 CLOSE Product_Cursor;
 DEALLOCATE Product_Cursor;
 
+SELECT * FROM Products;
 --2. Create a cursor Product_Cursor_Fetch to fetch the records in form of ProductID_ProductName.
 --(Example: 1_Smartphone)
 DECLARE @Product_id1 INT,
 	@Product_Name1 VARCHAR(50); 
 
 DECLARE Product_Cursor_Fetch CURSOR
-FOR SELECT @Product_id1 , @Product_Name1 FROM Products;
+FOR SELECT Product_id , Product_Name FROM Products;
 
 OPEN Product_Cursor_Fetch;
 FETCH NEXT FROM Product_Cursor_Fetch INTO @Product_id1, @Product_Name1;
@@ -58,10 +59,44 @@ CLOSE Product_Cursor_Fetch;
 DEALLOCATE Product_Cursor_Fetch;
 
 --3. Create a Cursor to Find and Display Products Above Price 30,000.
+DECLARE @Product_id2 INT ,
+	@Product_Name2 VARCHAR(250),
+	@Price2 DECIMAL(10, 2); 
 
+DECLARE Product_Cursor_Price CURSOR
+FOR SELECT Product_id , Product_Name , Price FROM Products WHERE Price > 30000;
+
+OPEN Product_Cursor_Price;
+FETCH NEXT FROM Product_Cursor_Price INTO @Product_id2, @Product_Name2, @Price2;
+
+WHILE @@FETCH_STATUS = 0
+	BEGIN
+		PRINT CAST(@Product_id2 AS VARCHAR) + '-' + @Product_Name2 + '-' + CAST(@Price2 AS VARCHAR) 
+		FETCH NEXT FROM Product_Cursor_Price INTO @Product_id2, @Product_Name2, @Price2;
+	END
+
+CLOSE Product_Cursor_Price;
+DEALLOCATE Product_Cursor_Price;
 
 --4. Create a cursor Product_CursorDelete that deletes all the data from the Products table.
+DECLARE @Product_id3 INT ,
+	@Product_Name3 VARCHAR(250),
+	@Price3 DECIMAL(10, 2); 
 
+DECLARE Product_Cursor_Delete CURSOR
+FOR SELECT Product_id , Product_Name , Price FROM Products;
+
+OPEN Product_Cursor_Delete;
+FETCH NEXT FROM Product_Cursor_Delete INTO @Product_id3, @Product_Name3, @Price3;
+
+WHILE @@FETCH_STATUS = 0
+	BEGIN
+		DELETE FROM Products WHERE Product_id = @Product_id3
+		FETCH NEXT FROM Product_Cursor_Delete INTO @Product_id3, @Product_Name3, @Price3;
+	END
+
+CLOSE Product_Cursor_Delete;
+DEALLOCATE Product_Cursor_Delete;
 
 --Part – B
 
