@@ -123,12 +123,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   InkWell(
                     onTap: () {
                       isRegisterScreen = !isRegisterScreen;
-                      loginText = isRegisterScreen ? registerText : loginText;
-                      registerText = isRegisterScreen ? loginText : registerText;
+                      // loginText = isRegisterScreen ? registerText : loginText;
+                      // registerText = isRegisterScreen ? loginText : registerText;
                       setState(() {});
                     },
                     child: Text(
-                      registerText,
+                      isRegisterScreen ? loginText : registerText,
                       style: TextStyle(color: Colors.blue),
                     ),
                   )
