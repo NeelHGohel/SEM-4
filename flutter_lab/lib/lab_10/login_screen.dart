@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       isRegisterScreen = !isRegisterScreen;
                       loginText = isRegisterScreen ? registerText : loginText;
-                      registerText = isRegisterScreen ? registerText : loginText;
+                      registerText = isRegisterScreen ? loginText : registerText;
                       setState(() {});
                     },
                     child: Text(
