@@ -68,9 +68,9 @@ class _BothViewState extends State<BothView> {
                   SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
               itemBuilder: (context, index) {
                 return Card(
-                  elevation: 3,
-                  color: Colors.white60,
-                  shape: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+                  elevation: 30,
+                  color: Colors.white,
+                  shape: OutlineInputBorder(borderRadius: BorderRadius.circular(30),borderSide: BorderSide(color: Colors.white)),
                   child: Column(
                     children: [
                       GridTile(child: Text(city[index],style: TextStyle(fontSize: 30),)),
