@@ -4,6 +4,7 @@ import 'package:flutter_lab/lab_06/whole_screen_divide.dart';
 import 'package:flutter_lab/lab_08/img_asset.dart';
 import 'package:flutter_lab/lab_08/img_web.dart';
 import 'package:flutter_lab/lab_08/stack_widget.dart';
+import 'package:flutter_lab/lab_11/both_view.dart';
 import 'package:flutter_lab/lab_11/grid_view.dart';
 import 'package:flutter_lab/lab_11/list_view.dart';
 import 'lab_06/horizontal.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: GridViewOfCity(),
+      home: BothView(),
     );
   }
 }
