@@ -78,8 +78,45 @@ SELECT * FROM PersonLog
 
 --3. Create an INSTEAD OF trigger that fires on INSERT, UPDATE and DELETE operation on the PersonInfo
 --table. For that, log all operations performed on the person table into PersonLog.
+
+--INSERT
+CREATE OR ALTER TRIGGER TR_A2_INSERT
+ON PersonInfo
+INSTEAD OF INSERT
+AS
+BEGIN
+	DECLARE @PID INT , @PNAME VARCHAR(50)
+	SELECT @PID = PersonID , @PNAME = PersonName FROM inserted
+	INSERT INTO PersonLog VALUES (@PID , @PNAME , 'INSERT' , GETDATE())
+END
+
+--UPDATE
+CREATE OR ALTER TRIGGER TR_A2_UPDATE
+ON PersonInfo
+INSTEAD OF UPDATE
+AS
+BEGIN
+	DECLARE @PID INT , @PNAME VARCHAR(50)
+	SELECT @PID = PersonID , @PNAME = PersonName FROM inserted
+	INSERT INTO PersonLog VALUES (@PID , @PNAME , 'INSERT' , GETDATE())
+END
+
+--DELETE
+CREATE OR ALTER TRIGGER TR_A2_DELETE
+ON PersonInfo
+INSTEAD OF DELETE
+AS
+BEGIN
+	DECLARE @PID INT , @PNAME VARCHAR(50)
+	SELECT @PID = PersonID , @PNAME = PersonName FROM deleted
+	INSERT INTO PersonLog VALUES (@PID , @PNAME , 'INSERT' , GETDATE())
+END
+
+
 --4. Create a trigger that fires on INSERT operation on the PersonInfo table to convert person name into
 --uppercase whenever the record is inserted.
+
+
 --5. Create trigger that prevent duplicate entries of person name on PersonInfo table.
 --6. Create trigger that prevent Age below 18 years.
 --Part – B
