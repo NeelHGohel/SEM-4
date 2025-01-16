@@ -17,9 +17,10 @@ CREATE TABLE PersonLog (
  PersonName VARCHAR(250) NOT NULL,
  Operation VARCHAR(50) NOT NULL,
  UpdateDate DATETIME NOT NULL,
- FOREIGN KEY (PersonID) REFERENCES PersonInfo(PersonID) ON DELETE CASCADE
 );
 
+--drop table PersonInfo
+--drop table PersonLog
 
 --Part – A
 --1. Create a trigger that fires on INSERT, UPDATE and DELETE operation on the PersonInfo table to display
@@ -39,7 +40,21 @@ DELETE FROM PersonInfo WHERE PersonID = 1;
 --2. Create a trigger that fires on INSERT, UPDATE and DELETE operation on the PersonInfo table. For that,
 --log all operations performed on the person table into PersonLog.
 
+--INSERT
+CREATE OR ALTER TRIGGER TR_A2_INSERT
+ON PersonInfo
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @PID INT , @PNAME VARCHAR(50)
+	SELECT @PID = PersonID , @PNAME = PersonName FROM inserted
+	INSERT INTO PersonLog VALUES (@PID , @PNAME , 'INSERT' , GETDATE())
+END
 
+--UPDATE
+
+SELECT * FROM PersonInfo
+SELECT * FROM PersonLog
 
 --3. Create an INSTEAD OF trigger that fires on INSERT, UPDATE and DELETE operation on the PersonInfo
 --table. For that, log all operations performed on the person table into PersonLog.
