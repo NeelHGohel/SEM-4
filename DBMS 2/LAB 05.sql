@@ -139,8 +139,10 @@ ON PersonInfo
 INSTEAD OF INSERT
 AS
 BEGIN
-	SELECT 
-
+	INSERT INTO PersonInfo (PersonID , PersonName , Salary , JoiningDate , City , Age , BirthDate)
+	SELECT * FROM inserted WHERE PersonID NOT IN (SELECT PersonID FROM PersonInfo)
+END
+	
 --6. Create trigger that prevent Age below 18 years.
 
 
