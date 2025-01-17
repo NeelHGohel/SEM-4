@@ -118,7 +118,7 @@ END
 --uppercase whenever the record is inserted.
 CREATE OR ALTER TRIGGER TR_A4
 ON PersonInfo
-AFTER INSERT , UPDATE , DELETE
+AFTER INSERT
 AS
 BEGIN
 	DECLARE @PID INT , @PNAME VARCHAR(50)
@@ -127,9 +127,10 @@ BEGIN
 END
 
 
-INSERT INTO PersonInfo VALUES(11, 'nel' , 1111.11 , '2025-01-16' ,'RAJKOT' , 19 , '2005-11-30');
+INSERT INTO PersonInfo VALUES(14, 'neel' , 1111.11 , '2025-01-16' ,'RAJKOT' , 19 , '2005-11-30');
 
 SELECT * FROM PersonInfo
+SELECT * FROM PersonLog
 
 
 --5. Create trigger that prevent duplicate entries of person name on PersonInfo table.
