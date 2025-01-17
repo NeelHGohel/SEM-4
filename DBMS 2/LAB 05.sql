@@ -127,7 +127,7 @@ BEGIN
 END
 
 
-INSERT INTO PersonInfo VALUES(14, 'neel' , 1111.11 , '2025-01-16' ,'RAJKOT' , 19 , '2005-11-30');
+INSERT INTO PersonInfo VALUES(14, 'neel' , 5000 , '2025-01-16' ,'RAJKOT' , 19 , '2005-11-30');
 
 SELECT * FROM PersonInfo
 SELECT * FROM PersonLog
@@ -144,7 +144,14 @@ BEGIN
 END
 	
 --6. Create trigger that prevent Age below 18 years.
-
+CREATE OR ALTER TRIGGER TR_A6
+ON PersonInfo
+INSTEAD OF INSERT
+AS
+BEGIN
+	INSERT INTO PersonInfo (PersonID , PersonName , Salary , JoiningDate , City , Age , BirthDate)
+	SELECT * FROM inserted WHERE Age >= 18
+END
 
 --Part – B
 
