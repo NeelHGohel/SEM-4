@@ -142,7 +142,10 @@ BEGIN
 	INSERT INTO PersonInfo (PersonID , PersonName , Salary , JoiningDate , City , Age , BirthDate)
 	SELECT * FROM inserted WHERE PersonID NOT IN (SELECT PersonID FROM PersonInfo)
 END
-	
+
+--DROP TRIGGER TR_A5;
+
+
 --6. Create trigger that prevent Age below 18 years.
 CREATE OR ALTER TRIGGER TR_A6
 ON PersonInfo
@@ -153,12 +156,25 @@ BEGIN
 	SELECT * FROM inserted WHERE Age >= 18
 END
 
+INSERT INTO PersonInfo VALUES(15, 'neel' , 5000 , GETDATE() ,'RAJKOT' , 19 , '2005-11-30');
+
 --Part – B
 
 --7. Create a trigger that fires on INSERT operation on person table, which calculates the age and update
 --that age in Person table.
+CREATE OR ALTER TRIGGER TR_B7
+ON PersonInfo
+AFTER INSERT
+AS
+BEGIN
+	UPDATE PersonInfo
+	SET Age = DATEDIFF(YEAR , BirthDate , GETDATE())
+	WHERE PersonID IN (SELECT PersonID FROM inserted)
+END
 
-
+SELECT * FROM PersonInfo
+SELECT * FROM PersonLog
+		
 --8. Create a Trigger to Limit Salary Decrease by a 10%.
 
 
@@ -167,8 +183,22 @@ END
 
 --9. Create Trigger to Automatically Update JoiningDate to Current Date on INSERT if JoiningDate is NULL
 --during an INSERT.
-
+CREATE OR ALTER TRIGGER TR_C9
+ON PersonInfo
+AFTER INSERT
+AS
+BEGIN
+    UPDATE PersonInfo
+    SET JoiningDate = GETDATE()
+    WHERE JoiningDate IS NULL AND PersonID IN (SELECT PersonID FROM inserted);
+END;
 
 --10. Create DELETE trigger on PersonLog table, when we delete any record of PersonLog table it prints
 --‘Record deleted successfully from PersonLog’.
-
+CREATE OR ALTER TRIGGER TR_C10
+ON PersonLog
+AFTER DELETE
+AS
+BEGIN
+    PRINT 'Record deleted successfully from PersonLog.'
+END;
