@@ -134,7 +134,12 @@ SELECT * FROM PersonLog
 
 
 --5. Create trigger that prevent duplicate entries of person name on PersonInfo table.
-
+CREATE OR ALTER TRIGGER TR_A5
+ON PersonInfo
+INSTEAD OF INSERT
+AS
+BEGIN
+	SELECT 
 
 --6. Create trigger that prevent Age below 18 years.
 
