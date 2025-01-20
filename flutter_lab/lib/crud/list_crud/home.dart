@@ -46,12 +46,12 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                 ),
-                // validator: (value) {
-                //   if (value == null || value.trim().isEmpty) {
-                //     return 'Enter Name';
-                //   }
-                //   return null;
-                // },
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Enter Name';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 10),
               TextFormField(
@@ -62,17 +62,17 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                 ),
-                // validator: (value) {
-                //   if (value == null || value.trim().isEmpty) {
-                //     return 'Enter Email Address';
-                //   }
-                //   final emailRegex = RegExp(
-                //       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$');
-                //   if (!emailRegex.hasMatch(value.trim())) {
-                //     return 'Enter Valid Email Address';
-                //   }
-                //   return null;
-                // },
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Enter Email Address';
+                  }
+                  final emailRegex = RegExp(
+                      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$');
+                  if (!emailRegex.hasMatch(value.trim())) {
+                    return 'Enter Valid Email Address';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 10),
               Row(

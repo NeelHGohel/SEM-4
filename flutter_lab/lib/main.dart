@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/crud/list_crud/home.dart';
 import 'package:flutter_lab/lab_06/vertical.dart';
 import 'package:flutter_lab/lab_06/whole_screen_divide.dart';
 import 'package:flutter_lab/lab_08/img_asset.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BothView(),
+      home: HomePage(),
     );
   }
 }
