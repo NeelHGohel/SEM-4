@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                 controller: nameController,
                 decoration: const InputDecoration(
                   labelText: 'Enter Name',
-                  hintText: 'Enter full name',
+                  hintText: 'Enter name',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(50)),
                   ),
