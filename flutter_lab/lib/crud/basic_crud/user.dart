@@ -1,4 +1,4 @@
-import 'package:flutter_lab/crud/string_const.dart';
+import 'package:flutter_lab/crud/basic_crud/string_const.dart';
 
 class User {
   List<Map<String, dynamic>> userList = [];

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_lab/crud/user.dart';
+import 'package:flutter_lab/crud/basic_crud/user.dart';
 
 void main() {
   User user = User();
