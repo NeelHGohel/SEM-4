@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 15),
               TextFormField(
                 controller: nameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Enter Name',
                   hintText: 'Enter name',
                   border: OutlineInputBorder(
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 20),
               TextFormField(
                 controller: emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Enter Email',
                   hintText: 'abc@xyz.com',
                   border: OutlineInputBorder(
