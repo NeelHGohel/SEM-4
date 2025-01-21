@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               TextFormField(
                 controller: nameController,
                 decoration: const InputDecoration(
-                  labelText: 'Name',
+                  labelText: 'Enter Name',
                   hintText: 'Enter Name',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                   return null;
                 },
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 30),
               Expanded(
                 child: ListView.builder(
                   itemCount: users.length,
@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               users[index].name,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(users[index].email),
           ],
@@ -151,9 +151,9 @@ class _HomePageState extends State<HomePage> {
                     selectedIndex = index;
                   });
                 },
-                icon: const Icon(Icons.edit),
+                icon: Icon(Icons.edit),
               ),
-              const SizedBox(width: 4),
+              SizedBox(width: 10),
               IconButton(
                 onPressed: () {
                   setState(() {
@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                     }
                   });
                 },
-                icon: const Icon(Icons.delete),
+                icon: Icon(Icons.delete),
               ),
             ],
           ),
