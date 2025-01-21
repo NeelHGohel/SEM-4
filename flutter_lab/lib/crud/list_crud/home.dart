@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'user.dart';
+import 'package:flutter_lab/crud/list_crud/temp/user.dart';
 
 void main() {
   runApp(const MaterialApp(

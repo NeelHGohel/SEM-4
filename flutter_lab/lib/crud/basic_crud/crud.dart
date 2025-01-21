@@ -3,8 +3,7 @@ import 'dart:io';
 import '../list_crud/temp/user.dart';
 
 
-void main() {
-  User user = User();
+void main() {  User user = User();
 
   bool flag = true;
 
