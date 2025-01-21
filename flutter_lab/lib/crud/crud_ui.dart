@@ -18,6 +18,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   List<User> users = [];
@@ -43,7 +45,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 10),
               TextFormField(
                 controller: nameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Enter Name',
                   hintText: 'Enter Name',
                   border: OutlineInputBorder(
@@ -60,7 +62,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 20),
               TextFormField(
                 controller: emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Enter Name",
                   hintText: 'abc@gmail.com',
                   border: OutlineInputBorder(
@@ -73,6 +75,16 @@ class _HomePageState extends State<HomePage> {
                   }
                   return null;
                 },
+              ),
+              SizedBox(height: 20,),
+              TextFormField(
+                controller: searchController,
+                decoration: InputDecoration(
+                  labelText: "Search Here",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                ),
               ),
               SizedBox(height: 20),
               Row(
