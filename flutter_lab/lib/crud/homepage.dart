@@ -16,9 +16,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   List<User> users = [];
   int selectedIndex = -1;
@@ -28,8 +28,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         // centerTitle: true,
-        title: const Text('User List'),
-        backgroundColor: Colors.redAccent,
+        title: Text(
+          'CRUD UI',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -37,48 +40,44 @@ class _HomePageState extends State<HomePage> {
           key: _formKey,
           child: Column(
             children: [
-              const SizedBox(height: 10),
+              SizedBox(height: 10),
               TextFormField(
                 controller: nameController,
                 decoration: const InputDecoration(
+                  labelText: 'Name',
                   hintText: 'Enter Name',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                 ),
-                // validator: (value) {
-                //   if (value == null || value.trim().isEmpty) {
-                //     return 'Enter Name';
-                //   }
-                //   return null;
-                // },
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Enter Name';
+                  }
+                  return null;
+                },
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 10),
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
-                  hintText: 'Enter Email',
+                  labelText: "Enter Name",
+                  hintText: 'abc@gmail.com',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                 ),
-                // validator: (value) {
-                //   if (value == null || value.trim().isEmpty) {
-                //     return 'Enter Email Address';
-                //   }
-                //   final emailRegex = RegExp(
-                //       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$');
-                //   if (!emailRegex.hasMatch(value.trim())) {
-                //     return 'Enter Valid Email Address';
-                //   }
-                //   return null;
-                // },
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Enter Email Address';
+                  }
+                  return null;
+                },
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -92,9 +91,8 @@ class _HomePageState extends State<HomePage> {
                         });
                       }
                     },
-                    child: const Text('Submit'),
+                    child: Text('Submit'),
                   ),
-
                   ElevatedButton(
                     onPressed: () {
                       if (selectedIndex != -1 &&
@@ -110,19 +108,12 @@ class _HomePageState extends State<HomePage> {
                         });
                       }
                     },
-                    child: const Text('Update'),
+                    child: Text('Update'),
                   ),
                 ],
               ),
-
-              const SizedBox(height: 10),
-
-              users.isEmpty
-                  ? const Text(
-                'No User entered yet..',
-                style: TextStyle(fontSize: 22),
-              )
-                  : Expanded(
+              SizedBox(height: 10),
+              Expanded(
                 child: ListView.builder(
                   itemCount: users.length,
                   itemBuilder: (context, index) => getRow(index),
@@ -183,5 +174,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
