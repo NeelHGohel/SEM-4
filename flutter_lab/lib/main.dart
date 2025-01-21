@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/exam/userExam.dart';
 import 'package:flutter_lab/lab_06/vertical.dart';
 import 'package:flutter_lab/lab_06/whole_screen_divide.dart';
 import 'package:flutter_lab/lab_08/img_asset.dart';
@@ -11,6 +12,7 @@ import 'lab_06/horizontal.dart';
 import 'lab_07/textWidget.dart';
 import 'lab_09/tabView.dart';
 import 'lab_10/login_screen.dart';
+import 'dart:ui';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BothView(),
+      home: CrudUI(),
     );
   }
 }
