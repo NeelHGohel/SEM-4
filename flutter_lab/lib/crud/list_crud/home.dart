@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           'User List',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.red,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
