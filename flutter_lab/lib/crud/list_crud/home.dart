@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                         });
                       }
                     },
-                    child: const Text(
+                    child:Text(
                       'Submit',
                       style: TextStyle(color: Colors.black),
                     ),
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                         });
                       }
                     },
-                    child: const Text(
+                    child:Text(
                       'Update',
                       style: TextStyle(color: Colors.black),
                     ),
