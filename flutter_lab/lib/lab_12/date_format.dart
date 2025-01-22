@@ -8,6 +8,7 @@ class DateFormat extends StatefulWidget {
 }
 
 class _DateFormatState extends State<DateFormat> {
+  int age = 0;
   String dob = "Select DOB";
   DateTime? date = DateTime.now();
   @override
@@ -27,9 +28,20 @@ class _DateFormatState extends State<DateFormat> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
-              child: Text(
-                dob,
-                style: TextStyle(fontSize: 30),
+              child: Column(
+                children: [
+                  Text(
+                    dob,
+                    style: TextStyle(fontSize: 30),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Age = $age",
+                    style: TextStyle(fontSize: 30),
+                  )
+                ],
               ),
               onTap: () async {
                 date = await showDatePicker(
@@ -42,7 +54,9 @@ class _DateFormatState extends State<DateFormat> {
                     DateTime.now().day,
                   ),
                 );
+
                 dob = "${date!.day}-${date!.month}-${date!.year}";
+                age = DateTime.now().year - date!.year;
                 setState(() {});
               },
             ),
