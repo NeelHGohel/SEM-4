@@ -20,20 +20,34 @@ class _DateFormatState extends State<DateFormat> {
         ),
         backgroundColor: Colors.red,
       ),
-      body: InkWell(
-        child: Text(dob),
-        onTap: () async {
-          date = await showDatePicker(
-            context: context,
-            initialDate: date,
-            firstDate: DateTime(2005),
-            lastDate: DateTime(2025),
-          );
-          dob = "${date!.day}-${date!.month}-${date!.year}";
-          setState(() {});
-
-        },
-
+      body: SizedBox(
+        width: double.maxFinite,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            InkWell(
+              child: Text(
+                dob,
+                style: TextStyle(fontSize: 30),
+              ),
+              onTap: () async {
+                date = await showDatePicker(
+                  context: context,
+                  initialDate: date,
+                  firstDate: DateTime(1991),
+                  lastDate: DateTime(
+                    DateTime.now().year,
+                    DateTime.now().month,
+                    DateTime.now().day,
+                  ),
+                );
+                dob = "${date!.day}-${date!.month}-${date!.year}";
+                setState(() {});
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
