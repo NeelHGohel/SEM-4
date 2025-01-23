@@ -73,6 +73,7 @@ select * from EmployeeDetails
 --table.
 
 
+
 --4) Create a trigger to ensure that the JoiningDate is automatically set to the current date if it
 --is NULL during an INSERT operation.
 
