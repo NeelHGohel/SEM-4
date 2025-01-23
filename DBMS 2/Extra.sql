@@ -9,12 +9,15 @@ CREATE TABLE EmployeeDetails(
 );
 
 CREATE TABLE EmployeeLogs(
-	LogID Int Primary Key,
+	LogID Int Primary Key IDENTITY(1,1),
 	EmployeeID Int,
 	EmployeeName Varchar(100),
 	ActionPerformed Varchar(100),
 	ActionDate DateTime,
 );
+
+--drop table EmployeeLogs
+--drop table EmployeeDetails
 
 --1) Create a trigger that fires AFTER INSERT, UPDATE, and DELETE operations on the
 --EmployeeDetails table to display the message "Employee record inserted", "Employee
@@ -55,13 +58,14 @@ ON EmployeeDetails
 AFTER INSERT , UPDATE , DELETE
 AS
 BEGIN
-	INSERT INTO EmployeeLogs(LogID , EmployeeID , EmployeeName , ActionPerformed , ActionDate)
-	SELECT * FROM inserted
+	INSERT INTO EmployeeLogs (EmployeeID , EmployeeName , ActionPerformed , ActionDate)
+	SELECT EmployeeID ,EmployeeName , 'INSERT' , Joiningdate FROM inserted
 END;
 
-INSERT INTO EmployeeDetails VALUES (1 , 'NEEL' , '1213' , 'CE' ,100.2 , '2025-01-23')
+INSERT INTO EmployeeDetails VALUES (10 , 'NEEL' , '1213' , 'CE' ,100.2 , '2025-01-23')
 
 SELECT * FROM EmployeeLogs
+select * from EmployeeDetails
 
 
 --3) Create a trigger that fires AFTER INSERT to automatically calculate the joining bonus
