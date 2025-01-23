@@ -20,7 +20,6 @@ class _FormEntryState extends State<FormEntry> {
   @override
   void initState() {
     super.initState();
-    // Initially filtered list is the same as the student list
     filteredlist = List.from(studentlist);
   }
 
