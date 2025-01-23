@@ -71,9 +71,13 @@ select * from EmployeeDetails
 --3) Create a trigger that fires AFTER INSERT to automatically calculate the joining bonus
 --(10% of the salary) for new employees and update a bonus column in the EmployeeDetails
 --table.
-
 CREATE OR ALTER TRIGGER TR_3
-
+ON EmployeeDetails
+AFTER INSERT
+AS
+BEGIN
+	
+END;
 --4) Create a trigger to ensure that the JoiningDate is automatically set to the current date if it
 --is NULL during an INSERT operation.
 
