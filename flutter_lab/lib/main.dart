@@ -17,6 +17,8 @@ import 'lab_09/tabView.dart';
 import 'lab_10/login_screen.dart';
 import 'dart:ui';
 
+import 'lab_13/bottom_sheet.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BottomBar(),
+      home: BottomSheetDemo(),
     );
   }
 }
