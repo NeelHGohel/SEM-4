@@ -41,7 +41,7 @@ class _BottomBarState extends State<BottomBar> {
         currentIndex: selectedBottomIndex,
         selectedItemColor: Colors.white,
         type: BottomNavigationBarType.shifting,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             backgroundColor: Colors.black,
             icon: Icon(Icons.home),
