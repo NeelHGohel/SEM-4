@@ -18,9 +18,6 @@ class _BottomSheetDemoState extends State<BottomSheetDemo> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "Neel"
-          ),
           ElevatedButton(
             onPressed: () {
               showModalBottomSheet(
