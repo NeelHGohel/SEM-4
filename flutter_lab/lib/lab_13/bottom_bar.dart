@@ -48,12 +48,12 @@ class _BottomBarState extends State<BottomBar> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.pink,
             icon: Icon(Icons.timeline),
             label: 'Updates',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.red,
             icon: Icon(Icons.camera),
             label: 'Upload Image',
           ),
@@ -63,7 +63,7 @@ class _BottomBarState extends State<BottomBar> {
             label: 'Community',
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.green,
             icon: Icon(Icons.call),
             label: 'Calls',
           ),
