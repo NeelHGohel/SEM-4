@@ -14,7 +14,13 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int selectedBottomIndex = 0;
-  List<Widget> pages = [LoginScreen(),Tabview(),Home(),About(),LoginScreen()];
+  List<Widget> pages = [
+    LoginScreen(),
+    Tabview(),
+    Home(),
+    About(),
+    LoginScreen()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

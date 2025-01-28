@@ -12,9 +12,21 @@ class _BottomSheetDemoState extends State<BottomSheetDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bottom Sheet DEMO" , style: TextStyle(color: Colors.white),),
+        title: Text(
+          "Bottom Sheet DEMO",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.red,
       ),
+      // body: BottomSheet(
+      //   onClosing: () {
+      //
+      //   },
+      //   builder: (context) {
+      //
+      //
+      //   },
+      // ),
     );
   }
 }
