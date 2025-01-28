@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../lab_09/home.dart';
+
+
 class BottomSheetDemo extends StatefulWidget {
   const BottomSheetDemo({super.key});
 
@@ -8,25 +11,36 @@ class BottomSheetDemo extends StatefulWidget {
 }
 
 class _BottomSheetDemoState extends State<BottomSheetDemo> {
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Bottom Sheet DEMO",
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.red,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Neel"
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Container(
+                    height: 500,
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Home(),
+                  );
+                },
+              );
+            },
+            child: Text("Show"),
+          )
+        ],
       ),
-      // body: BottomSheet(
-      //   onClosing: () {
-      //
-      //   },
-      //   builder: (context) {
-      //
-      //
-      //   },
-      // ),
     );
   }
 }
