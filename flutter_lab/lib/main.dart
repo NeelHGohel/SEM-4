@@ -4,6 +4,7 @@ import 'package:flutter_lab/lab_06/whole_screen_divide.dart';
 import 'package:flutter_lab/lab_08/img_asset.dart';
 import 'package:flutter_lab/lab_08/img_web.dart';
 import 'package:flutter_lab/lab_08/stack_widget.dart';
+import 'package:flutter_lab/lab_09/about.dart';
 import 'package:flutter_lab/lab_09/home.dart';
 import 'package:flutter_lab/lab_11/both_view.dart';
 import 'package:flutter_lab/lab_11/grid_view.dart';
@@ -28,7 +29,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/" : (context) => RouteDemo(),
-        "/page1" : (context) => Home()
+        "/page1" : (context) => Home(),
+        // "/page2" : (context) => About()
       },
       // home: RouteDemo(),
     );
