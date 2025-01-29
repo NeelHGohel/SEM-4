@@ -10,6 +10,7 @@ import 'package:flutter_lab/lab_11/list_view.dart';
 import 'package:flutter_lab/lab_12/date_format.dart';
 import 'package:flutter_lab/lab_12/single_child_scrollview.dart';
 import 'package:flutter_lab/lab_13/bottom_bar.dart';
+import 'package:flutter_lab/lab_14/route_demo.dart';
 import 'crud/form_entry.dart';
 import 'lab_06/horizontal.dart';
 import 'lab_07/textWidget.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BottomBar(),
+      home: RouteDemo(),
     );
   }
 }
