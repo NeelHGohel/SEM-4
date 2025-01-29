@@ -12,7 +12,18 @@ class _RouteDemoState extends State<RouteDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Routes Demo"),
+        title: Text(
+          "Routes Demo",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red,
+      ),
+      body: Center(
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("/page1", arguments: "/http://localhost:51457/page1");
+            },
+            child: Text("Next")),
       ),
     );
   }
