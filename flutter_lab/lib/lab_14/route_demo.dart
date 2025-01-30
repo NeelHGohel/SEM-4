@@ -21,8 +21,8 @@ class _RouteDemoState extends State<RouteDemo> {
       body: Center(
         child: ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushNamed("/page1", arguments: "/http://localhost:51457/page1");
-              // Navigator.of(context).pushNamed("/page2", arguments: "/http://localhost:51457/page2");
+              Navigator.of(context).pushNamed("/page1",
+                  arguments: "/http://localhost:51457/page1");
             },
             child: Text("Next")),
       ),
