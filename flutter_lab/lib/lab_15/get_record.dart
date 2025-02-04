@@ -1,4 +1,5 @@
-import 'database.dart';
+
+import 'package:flutter_lab/lab_15/database.dart';
 
 void main() async {
   MyDatabase db = MyDatabase();
