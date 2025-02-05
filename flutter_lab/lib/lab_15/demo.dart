@@ -28,6 +28,13 @@ class _DemoState extends State<Demo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Hello From the database",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red,
+      ),
       body: FutureBuilder(
         future: database.selectToDoList(),
         builder: (context, snapshot) {
