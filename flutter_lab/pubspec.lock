@@ -74,23 +74,15 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: "3f41d009ba7172d5ff9be5f6e6e6abb4300e263aab8866d2a0842ed2a70f8f0c"
+      sha256: "5398f14efa795ffb7a33e9b6a08798b26a180edac4ad7db3f231e40f82ce11e1"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.0"
+    version: "5.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
-  intl:
-    dependency: "direct dev"
-    description:
-      name: intl
-      sha256: "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.20.2"
   leak_tracker:
     dependency: transitive
     description:
@@ -119,10 +111,10 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: "976c774dd944a42e83e2467f4cc670daef7eed6295b10b36ae8c85bcbf828235"
+      sha256: c35bb79562d980e9a453fc715854e1ed39e24e7d0297a880ef54e17f9874a9d7
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.0"
+    version: "5.1.1"
   matcher:
     dependency: transitive
     description:
@@ -156,7 +148,7 @@ packages:
     source: hosted
     version: "1.9.0"
   path_provider:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: path_provider
       sha256: "50c5dd5b6e1aaf6fb3a78b33f6aa3afca52bf903a8a5298f53101fdaee55bbcd"
@@ -233,7 +225,7 @@ packages:
     source: hosted
     version: "1.10.0"
   sqflite:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: sqflite
       sha256: "2d7299468485dca85efeeadf5d38986909c5eb0cd71fd3db2c2f000e6c9454bb"
@@ -345,5 +337,5 @@ packages:
     source: hosted
     version: "1.1.0"
 sdks:
-  dart: ">=3.5.4 <4.0.0"
+  dart: ">=3.6.1 <4.0.0"
   flutter: ">=3.24.0"

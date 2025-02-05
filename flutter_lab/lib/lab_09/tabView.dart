@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/lab_09/about.dart';
-import 'package:flutter_lab/lab_09/home.dart';
+
+import 'about.dart';
+import 'home.dart';
+
 
 class Tabview extends StatelessWidget {
   const Tabview({super.key});
