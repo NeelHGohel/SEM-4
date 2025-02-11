@@ -9,17 +9,17 @@ class Lab17ListView extends StatefulWidget {
 }
 
 class _Lab17ListViewState extends State<Lab17ListView> {
-  MyDatabase db = MyDatabase();  // Instance of the MyDatabase class
+  MyDatabase db = MyDatabase();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('To Do List'),
-        backgroundColor: Colors.teal, // Better color for app bar
+        backgroundColor: Colors.teal,
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
-        future: db.selectAllTasks(),  // Fetch tasks along with category name
+        future: db.selectAllTasks(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -35,11 +35,11 @@ class _Lab17ListViewState extends State<Lab17ListView> {
               itemBuilder: (context, index) {
                 final task = tasks[index];
 
-                // You can customize the status of task here (pending, completed)
                 Icon statusIcon;
                 Color statusColor;
                 if (task['status'] == 'completed') {
-                  statusIcon = const Icon(Icons.check_circle, color: Colors.green);
+                  statusIcon =
+                      const Icon(Icons.check_circle, color: Colors.green);
                   statusColor = Colors.green[50]!;
                 } else {
                   statusIcon = const Icon(Icons.pending, color: Colors.orange);
@@ -47,12 +47,14 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                 }
 
                 return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                  elevation: 4, // Adds shadow effect
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(12),
-                    leading: statusIcon, // Add the status icon here
+                    leading: statusIcon,
                     title: Text(
                       task['task_name'],
                       style: TextStyle(
@@ -64,11 +66,15 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Due: ${task['due_date']}'),
-                        Text('Category: ${task['category_name']}'), // Display the category
+                        Text(
+                          'Category: ${task['category_name']}',
+                        ),
                       ],
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios, color: Colors.teal), // Arrow icon for interaction
-                    tileColor: statusColor, // Background color based on task status
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        color: Colors.teal),
+                    tileColor:
+                        statusColor,
                     onTap: () {
                       // Implement task details or edit functionality here
                     },
