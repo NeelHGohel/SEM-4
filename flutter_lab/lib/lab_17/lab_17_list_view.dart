@@ -75,14 +75,7 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                     ),
                     trailing: Icon(Icons.arrow_forward_ios, color: Colors.teal),
                     tileColor: statusColor,
-                    onTap: () async {
-                      // Navigate to the Edit Task Screen with the selected task
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EditTaskScreen(task: task),
-                        ),
-                      );
+                    onTap: ()  {
                     },
                   ),
                 );
