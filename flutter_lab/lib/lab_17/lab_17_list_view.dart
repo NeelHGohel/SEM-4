@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../lab_15/database.dart';
+import '../lab_18/to_do_edit_page.dart';
 
 class Lab17ListView extends StatefulWidget {
   const Lab17ListView({super.key});
@@ -51,7 +52,8 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   elevation: 4,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(12),
                     leading: statusIcon,
@@ -71,12 +73,16 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                         ),
                       ],
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios,
-                        color: Colors.teal),
-                    tileColor:
-                        statusColor,
-                    onTap: () {
-                      // Implement task details or edit functionality here
+                    trailing: Icon(Icons.arrow_forward_ios, color: Colors.teal),
+                    tileColor: statusColor,
+                    onTap: () async {
+                      // Navigate to the Edit Task Screen with the selected task
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditTaskScreen(task: task),
+                        ),
+                      );
                     },
                   ),
                 );

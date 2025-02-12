@@ -129,16 +129,6 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
                   child: const Text('Show all task'),
                 ),
 
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => EditPage(),
-                      ),
-                    );
-                  },
-                  child: const Text('Edit Page'),
-                ),
               ],
             ),
           ),

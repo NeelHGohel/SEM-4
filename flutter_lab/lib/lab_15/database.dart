@@ -9,6 +9,7 @@ class MyDatabase {
     String path = join(directory.path, 'To_DO_List.db');
 
     var db = await openDatabase(path, onCreate: (db, version) async {
+      // Create Category table
       await db.execute(''' 
           CREATE TABLE Category (
             category_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -16,6 +17,7 @@ class MyDatabase {
           );
       ''');
 
+      // Create Task table
       await db.execute(''' 
           CREATE TABLE Task (
             task_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -92,5 +94,22 @@ class MyDatabase {
   Future<int> updateTaskStatus(int taskId, String status) async {
     Database db = await initDatabase();
     return await db.update('Task', {'status': status}, where: 'task_id = ?', whereArgs: [taskId]);
+  }
+
+  // Update task (task name, description, due date, category, and status)
+  Future<int> updateTask(int taskId, String taskName, String description, String dueDate, int categoryId, String status) async {
+    Database db = await initDatabase();
+    return await db.update(
+      'Task',
+      {
+        'task_name': taskName,
+        'description': description,
+        'due_date': dueDate,
+        'category_id': categoryId,
+        'status': status,
+      },
+      where: 'task_id = ?',
+      whereArgs: [taskId],
+    );
   }
 }
