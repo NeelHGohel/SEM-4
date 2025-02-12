@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../lab_15/database.dart';
 import '../lab_16/insert_screen.dart';
@@ -86,11 +87,38 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                           },
                         ),
                         IconButton(
-                          icon: const Icon(Icons.delete, color: Colors.red),
-                          onPressed: () async {
-                            await db.deleteTask(task['task_id']);
-                            setState(() {});
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return CupertinoAlertDialog(
+                                  title: const Text('Delete'),
+                                  content: const Text(
+                                      'Are you sure you want to delete this user?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: ()  async {
+                                        await db.deleteTask(task['task_id']);
+                                        setState(() {});
+
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('Yes'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('No'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
+                          iconSize: 25,
+                          color: Colors.red,
                         ),
                       ],
                     ),
