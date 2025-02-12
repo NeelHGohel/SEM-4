@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/lab_17/lab_17_list_view.dart';
 import '../lab_15/database.dart';
+import '../lab_18/to_do_edit_page.dart';
 
 class TodoInsertScreen extends StatefulWidget {
   @override
@@ -117,7 +118,6 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
                   child: const Text('Add Task'),
                 ),
                 const SizedBox(height: 10),
-                // Reset Button
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
@@ -127,6 +127,17 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
                     );
                   },
                   child: const Text('Show all task'),
+                ),
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => EditPage(),
+                      ),
+                    );
+                  },
+                  child: const Text('Edit Page'),
                 ),
               ],
             ),
