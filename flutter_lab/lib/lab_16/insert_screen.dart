@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/export_file.dart';
 import '../lab_15/database.dart';
 
 class TodoInsertScreen extends StatefulWidget {
-  final Map<String, dynamic>? task;  // Optional task for editing
+  final Map<String, dynamic>? task; // Optional task for editing
 
   TodoInsertScreen({Key? key, this.task}) : super(key: key);
 
@@ -32,10 +33,13 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
   }
 
   Future<void> _loadCategories() async {
-    List<Map<String, dynamic>> categories = await myDatabase.selectAllCategories();
+    List<Map<String, dynamic>> categories =
+        await myDatabase.selectAllCategories();
     setState(() {
       _categories = categories;
-      _selectedCategory = categories.isNotEmpty ? categories[0]['category_id'].toString() : null;
+      _selectedCategory = categories.isNotEmpty
+          ? categories[0]['category_id'].toString()
+          : null;
     });
   }
 
@@ -126,6 +130,16 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
                   child: Text(widget.task == null ? 'Add Task' : 'Update Task'),
                 ),
                 const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Lab17ListView(),
+                      ),
+                    );
+                  },
+                  child: Text("Show All Task"),
+                ),
               ],
             ),
           ),
@@ -145,7 +159,8 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
       if (widget.task == null) {
         await myDatabase.insertTask(taskName, description, dueDate, categoryId);
       } else {
-        await myDatabase.updateTask(widget.task!['task_id'], taskName, description, dueDate, categoryId, 'pending');
+        await myDatabase.updateTask(widget.task!['task_id'], taskName,
+            description, dueDate, categoryId, 'pending');
       }
 
       Navigator.of(context).pop();

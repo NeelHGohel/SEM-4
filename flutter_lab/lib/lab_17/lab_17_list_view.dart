@@ -77,20 +77,19 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                         IconButton(
                           icon: const Icon(Icons.edit, color: Colors.blue),
                           onPressed: () async {
-                            // Navigate to TodoInsertScreen with task data for editing
                             await Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => TodoInsertScreen(task: task),
                               ),
                             );
-                            setState(() {});  // Refresh the list after editing
+                            setState(() {});
                           },
                         ),
                         IconButton(
                           icon: const Icon(Icons.delete, color: Colors.red),
                           onPressed: () async {
                             await db.deleteTask(task['task_id']);
-                            setState(() {}); // Refresh the list after deletion
+                            setState(() {});
                           },
                         ),
                       ],
