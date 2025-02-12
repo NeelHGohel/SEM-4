@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class MyDatabase {
+  // Initialize the database
   Future<Database> initDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory(); // Use getApplicationDocumentsDirectory for database location
     String path = join(directory.path, 'To_DO_List.db');
@@ -78,6 +79,13 @@ class MyDatabase {
     return await db.query('Category');
   }
 
+  // Fetch task by ID for editing
+  Future<Map<String, dynamic>?> selectTaskById(int taskId) async {
+    Database db = await initDatabase();
+    List<Map<String, dynamic>> result = await db.query('Task', where: 'task_id = ?', whereArgs: [taskId]);
+    return result.isNotEmpty ? result.first : null;
+  }
+
   // Fetch tasks by category
   Future<List<Map<String, dynamic>>> selectTasksByCategory(int categoryId) async {
     Database db = await initDatabase();
@@ -111,5 +119,11 @@ class MyDatabase {
       where: 'task_id = ?',
       whereArgs: [taskId],
     );
+  }
+
+  // Delete a task by ID
+  Future<int> deleteTask(int taskId) async {
+    Database db = await initDatabase();
+    return await db.delete('Task', where: 'task_id = ?', whereArgs: [taskId]);
   }
 }

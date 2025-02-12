@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../lab_15/database.dart';
+import '../lab_16/insert_screen.dart';
 
 class Lab17ListView extends StatefulWidget {
   const Lab17ListView({super.key});
@@ -39,7 +40,7 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                 Color statusColor;
                 if (task['status'] == 'completed') {
                   statusIcon =
-                      const Icon(Icons.check_circle, color: Colors.green);
+                  const Icon(Icons.check_circle, color: Colors.green);
                   statusColor = Colors.green[50]!;
                 } else {
                   statusIcon = const Icon(Icons.pending, color: Colors.orange);
@@ -48,7 +49,7 @@ class _Lab17ListViewState extends State<Lab17ListView> {
 
                 return Card(
                   margin:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   elevation: 4,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -67,15 +68,34 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Due: ${task['due_date']}'),
-                        Text(
-                          'Category: ${task['category_name']}',
+                        Text('Category: ${task['category_name']}'),
+                      ],
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.edit, color: Colors.blue),
+                          onPressed: () async {
+                            // Navigate to TodoInsertScreen with task data for editing
+                            await Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => TodoInsertScreen(task: task),
+                              ),
+                            );
+                            setState(() {});  // Refresh the list after editing
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () async {
+                            await db.deleteTask(task['task_id']);
+                            setState(() {}); // Refresh the list after deletion
+                          },
                         ),
                       ],
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios, color: Colors.teal),
                     tileColor: statusColor,
-                    onTap: ()  {
-                    },
                   ),
                 );
               },

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/lab_17/lab_17_list_view.dart';
 import '../lab_15/database.dart';
 
 class TodoInsertScreen extends StatefulWidget {
+  final Map<String, dynamic>? task;  // Optional task for editing
+
+  TodoInsertScreen({Key? key, this.task}) : super(key: key);
+
   @override
   _TodoInsertScreenState createState() => _TodoInsertScreenState();
 }
@@ -19,6 +22,12 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
   @override
   void initState() {
     super.initState();
+    if (widget.task != null) {
+      _taskNameController.text = widget.task!['task_name'];
+      _descriptionController.text = widget.task!['description'] ?? '';
+      _dueDateController.text = widget.task!['due_date'];
+      _selectedCategory = widget.task!['category_id'].toString();
+    }
     _loadCategories();
   }
 
@@ -34,7 +43,7 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add To-Do'),
+        title: Text(widget.task == null ? 'Add To-Do' : 'Edit To-Do'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -113,21 +122,10 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: _insertTask,
-                  child: const Text('Add Task'),
+                  onPressed: _insertOrUpdateTask,
+                  child: Text(widget.task == null ? 'Add Task' : 'Update Task'),
                 ),
                 const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Lab17ListView(),
-                      ),
-                    );
-                  },
-                  child: const Text('Show all task'),
-                ),
-
               ],
             ),
           ),
@@ -136,47 +134,21 @@ class _TodoInsertScreenState extends State<TodoInsertScreen> {
     );
   }
 
-  void _insertTask() async {
+  void _insertOrUpdateTask() async {
     if (_formKey.currentState!.validate()) {
       String taskName = _taskNameController.text;
       String description = _descriptionController.text;
       String dueDate = _dueDateController.text;
 
-      // Fetch the selected category id
       int categoryId = int.parse(_selectedCategory!);
 
-      await myDatabase.insertTask(taskName, description, dueDate, categoryId);
+      if (widget.task == null) {
+        await myDatabase.insertTask(taskName, description, dueDate, categoryId);
+      } else {
+        await myDatabase.updateTask(widget.task!['task_id'], taskName, description, dueDate, categoryId, 'pending');
+      }
 
-      // Show success dialog
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Task Added'),
-            content: Text('Task "$taskName" has been added successfully!'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _resetForm();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+      Navigator.of(context).pop();
     }
-  }
-
-  // Method to reset the form and the selected category
-  void _resetForm() {
-    _formKey.currentState!.reset();
-    _taskNameController.clear();
-    _descriptionController.clear();
-    _dueDateController.clear();
-    setState(() {
-      _selectedCategory = _categories.isNotEmpty ? _categories[0]['category_id'].toString() : null;
-    });
   }
 }
