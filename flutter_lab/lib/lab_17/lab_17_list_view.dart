@@ -92,7 +92,7 @@ class _Lab17ListViewState extends State<Lab17ListView> {
                             showDialog(
                               context: context,
                               builder: (context) {
-                                return CupertinoAlertDialog(
+                                return AlertDialog(
                                   title: const Text('Delete'),
                                   content: const Text(
                                       'Are you sure you want to delete this user?'),
