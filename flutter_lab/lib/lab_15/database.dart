@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 class MyDatabase {
   // Initialize the database
   Future<Database> initDatabase() async {
-    Directory directory = await getApplicationDocumentsDirectory(); // Use getApplicationDocumentsDirectory for database location
+    Directory directory = await getApplicationDocumentsDirectory();
     String path = join(directory.path, 'To_DO_List.db');
 
     var db = await openDatabase(path, onCreate: (db, version) async {
