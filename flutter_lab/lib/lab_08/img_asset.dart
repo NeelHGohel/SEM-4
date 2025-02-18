@@ -17,7 +17,7 @@ class _Img_assetState extends State<Img_asset> {
           decoration: BoxDecoration(
               color: Colors.red,
               borderRadius: BorderRadius.circular(30),
-              // image: Image.asset("assets/images/1.jpg")
+              // image: Image.assets("assets/images/1.jpg")
         ),
       ),
     ));
