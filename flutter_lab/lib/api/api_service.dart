@@ -1,31 +1,69 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
+import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 
 class ApiService {
   String baseUrl = "https://6672c8fa6ca902ae11b1c68c.mockapi.io/";
   // https://6672c8fa6ca902ae11b1c68c.mockapi.io/Faculty
 
-  Future<void> getUser() async {
-    http.Response res = await http.get(Uri.parse('${baseUrl}Faculty'));
+  ProgressDialog? pd;
+
+  void showProgressDialog(context) {
+    if (pd == null) {
+      pd = ProgressDialog(context);
+      pd!.style(
+        message: 'Please Wait',
+        borderRadius: 10.0,
+        backgroundColor: Colors.white,
+        progressWidget: CircularProgressIndicator(),
+        elevation: 10.0,
+        progressTextStyle: TextStyle(
+            color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+        messageTextStyle: TextStyle(
+            color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
+      );
+    }
+    pd!.show();
+  }
+
+  void dismissProgress() {
+    if (pd != null && pd!.isShowing()) {
+      pd!.hide();
+    }
+  }
+
+  Future<dynamic> getUsers(context) async {
+    showProgressDialog(context);
+    http.Response res = await http.get(Uri.parse(baseUrl + 'Faculty'));
+    dismissProgress();
     return convertJSONToData(res);
   }
 
-  Future<void> addUser({map}) async {
-    http.Response res = await http.post(Uri.parse('${baseUrl}Faculty') , body: map);
+  Future<dynamic> addUser({context, map}) async {
+    showProgressDialog(context);
+    http.Response res =
+        await http.post(Uri.parse(baseUrl + 'Faculty'), body: map);
+    dismissProgress();
     return convertJSONToData(res);
   }
 
-  Future<void> updateUser({id , map}) async {
-    http.Response res = await http.put(Uri.parse('${baseUrl}Faculty/$id'), body: map);
+  Future<dynamic> updateUser({id, map, context}) async {
+    showProgressDialog(context);
+    http.Response res =
+        await http.put(Uri.parse(baseUrl + 'Faculty/$id'), body: map);
+    dismissProgress();
     return convertJSONToData(res);
   }
 
-  Future<void> deleteUser({id}) async {
-    http.Response res = await http.delete(Uri.parse('${baseUrl}Faculty/$id'));
+  Future<dynamic> deleteUser({id, context}) async {
+    showProgressDialog(context);
+    http.Response res = await http.delete(Uri.parse(baseUrl + 'Faculty/$id'));
+    dismissProgress();
     return convertJSONToData(res);
   }
-
 
   dynamic convertJSONToData(http.Response res) {
     if (res.statusCode == 200) {
@@ -36,5 +74,4 @@ class ApiService {
       return 'NO DATA FOUND';
     }
   }
-
 }
